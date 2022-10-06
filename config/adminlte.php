@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Sistema FPYME</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -306,28 +306,34 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ], */
-        [
+/*         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
-        ],
-        [
+        ], */
+/*         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
+        ], */
+        //['header' => 'account_settings'],
+/*         [
             'text' => 'profile',
             'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
+        ], */
+        [
+            'text' => 'Dashboard',
+            'url'  => '/home',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'Productos',
             'url'  => '/products',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'ver-producto'
         ],
         [
             'text' => 'Roles',
@@ -346,13 +352,14 @@ return [
             'text' => 'Clientes',
             'url'  => '/clients',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'ver-usuarios'
         ],
         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
+        /* [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -389,8 +396,8 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ], */
+/*         ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -405,7 +412,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*
@@ -444,7 +451,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -460,6 +467,16 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js',
                 ],
             ],
         ],

@@ -11,11 +11,11 @@
         </div>
         <div class="card-body">
 
-            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Nuevo Producto</a>
-
-            <table class="table table-striped mt-2">
+            <a href="#" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalCreate">Nuevo Producto</a>
+            
+            <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableProducts">
                 <thead style="background-color:#6777ef">
-                    <th style="display: none;">ID</th>
+                    <th hidden>ID</th>
                     <th style="color:#fff;">Código</th>
                     <th style="color:#fff;">Nombre</th>
                     <th style="color:#fff;">Descripción</th>
@@ -25,6 +25,7 @@
                 <tbody>
                     @foreach($products as $product)
                     <tr>
+                        <td hidden>{{$product->id}}</td>
                         <td>{{$product->cod_prod}}</td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->description}}</td>
@@ -48,8 +49,6 @@
                 </tbody>
             </table>
 
-            {!! $products->links() !!}
-
         </div>
     </div>
 </div>
@@ -62,6 +61,18 @@
 @stop
 
 @section('js')
+
+<script>
+    $(document).ready( function () {
+        $('#tableProducts').DataTable({
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            },
+            responsive: true
+        });
+    } );
+</script>
+
 
 @if(!$errors->isEmpty())
     @if($errors->has('post'))

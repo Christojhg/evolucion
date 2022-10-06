@@ -16,10 +16,10 @@
         <div class="card-body">
 
             @can('crear-rol')
-            <a class="btn btn-success" href="{{ route('roles.create') }}">Nuevo Rol</a>
+            <a class="btn btn-success mb-3" href="{{ route('roles.create') }}">Nuevo Rol</a>
             @endcan
 
-            <table class="table table-striped mt-2">
+            <table class="table table-striped mt-2 nowrap" style="width: 100%;" id="tableRoles">
                 <thead style="background-color:#6777ef">
                     <th style="color:#fff;">Rol</th>
                     <th style="color:#fff;">Acciones</th>
@@ -55,6 +55,17 @@
 @stop
 
 @section('js')
+
+<script>
+    $(document).ready( function () {
+        $('#tableRoles').DataTable({
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            },
+            responsive: true
+        });
+    } );
+</script>
 
 @if (session('delete') == 'ok')
 <script>

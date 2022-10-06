@@ -35,7 +35,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'required' => 'El :attribute es requerido',
-            'cod_prod.required' => 'El nombre es requerido',
+            'cod_prod.required' => 'El código es requerido',
             'name.required' => 'El nombre es requerido',
             'description.required' => 'La descripción es requerida',
             'price.required' => 'El precio es requerido'

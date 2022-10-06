@@ -16,12 +16,12 @@
         <div class="card-body">
 
             @can('crear-cliente')
-            <a class="btn btn-success" href="{{route('clients.create')}}">Nuevo Cliente</a>
+            <a class="btn btn-success mb-3" href="{{route('clients.create')}}">Nuevo Cliente</a>
             @endcan
 
-            <table class="table table-striped mt-2">
+            <table class="table table-striped mt-2 nowrap" style="width: 100%;" id="tableClients">
                 <thead style="background-color:#6777ef">
-                    <th style="display: none;">ID</th>
+                    <th hidden>ID</th>
                     <th style="color:#fff;">Nombre</th>
                     <th style="color:#fff;">Email</th>
                     <th style="color:#fff;">Direccion</th>
@@ -68,6 +68,44 @@
 
 @section('js')
 <script>
-    console.log('Hi!');
+    $(document).ready( function () {
+        $('#tableClients').DataTable({
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            },
+            responsive: true
+        });
+    } );
+</script>
+
+@if (session('delete') == 'ok')
+<script>
+    Swal.fire(
+        'Borrado!',
+        'El cliente ha sido borrado',
+        'success'
+    )
+</script>
+@endif
+<script>
+    $('.formDelete').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Está seguro de eliminar?',
+            icon: 'warning',
+            text: 'Se borrara permanentemente',
+            showCancelButton: true,
+            confirmButtonColor: '#308d56',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, borrar',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.value) {
+                this.submit();
+
+            }
+        })
+    })
 </script>
 @stop
