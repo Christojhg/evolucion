@@ -90,24 +90,7 @@
     @endif
 @endif
 
-@if (session('delete') == 'ok')
-<script>
-    Swal.fire(
-        'Borrado!',
-        'El producto ha sido borrado',
-        'success'
-    )
-</script>
-@endif
-@if (session('success') == 'ok')
-<script>
-    Swal.fire(
-        'Agregado!',
-        'El producto ha sido agregado',
-        'success'
-    )
-</script>
-@endif
+
 <script>
     $('.formDelete').submit(function(e) {
         e.preventDefault();
@@ -129,5 +112,24 @@
         })
     })
 </script>
+
+@if (session('delete') == 'ok')
+<script>
+    Swal.fire(
+        'Borrado!',
+        'El producto ha sido borrado',
+        'success'
+    )
+</script>
+@endif
+@if (session('success') == 'ok')
+<script>
+    Swal.fire(
+        'Agregado!',
+        'El producto ha sido agregado',
+        'success'
+    )
+</script>
+@endif
 
 @stop

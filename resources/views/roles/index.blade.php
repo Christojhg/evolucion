@@ -67,15 +67,6 @@
     } );
 </script>
 
-@if (session('delete') == 'ok')
-<script>
-    Swal.fire(
-        'Borrado!',
-        'El rol ha sido borrado',
-        'success'
-    )
-</script>
-@endif
 <script>
     $('.formDelete').submit(function(e) {
         e.preventDefault();
@@ -98,4 +89,24 @@
     })
 </script>
 
+@if (session('delete') == 'ok')
+<script>
+    Swal.fire(
+        'Borrado!',
+        'El rol ha sido borrado',
+        'success'
+    )
+</script>
+@endif
+
+
+@if (session('success') == 'ok')
+<script>
+    Swal.fire(
+        'Agregado!',
+        'El rol ha sido agregado',
+        'success'
+    )
+</script>
+@endif
 @stop

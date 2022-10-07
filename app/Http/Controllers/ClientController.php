@@ -47,7 +47,7 @@ class ClientController extends Controller
     {
         $campos = [
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:clients,email',
             'address' => 'required',
             'doc_id' => 'required|numeric',
             'phone' => 'required|numeric'
@@ -57,6 +57,7 @@ class ClientController extends Controller
             'required' => 'El :attribute es requerido',
             'name.required' => 'El nombre es requerido',
             'email.required' => 'El email es requerido',
+            'email.unique' => 'El email ya existe',
             'address.required' => 'La direccion es requerida',
             'doc_id.required' => 'El documento es requerido',
             'doc_id.numeric' => 'El documento debe ser un numero',
@@ -68,7 +69,7 @@ class ClientController extends Controller
 
         Client::create($request->all());
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'ok');
     }
 
     /**
@@ -139,7 +140,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        Client::find($id);
+        Client::find($id)->delete();
 
         return redirect()->route('clients.index')->with('delete', 'ok');
     }

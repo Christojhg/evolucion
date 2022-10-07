@@ -82,7 +82,7 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'ok');
     }
 
     /**

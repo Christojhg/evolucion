@@ -12,28 +12,28 @@
                     @csrf
                     <div class="form-group">
                         <label for="codigoProducto">Código</label>
-                        <input type="text" name="cod_prod" class="form-control" id="codigoProducto" placeholder="Código">
+                        <input type="text" name="cod_prod" class="form-control" value="{{old('cod_prod')}}" id="codigoProducto" placeholder="Código">
                         @if($errors->has('cod_prod'))
                         <span class="text-danger">{{$errors->first('cod_prod')}}</span>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="nameProducto">Nombre</label>
-                        <input type="text" name="name" class="form-control" id="nameProducto" placeholder="Nombre">
+                        <input type="text" name="name" class="form-control" value="{{old('name')}}" id="nameProducto" placeholder="Nombre">
                         @if($errors->has('name'))
                         <span class="text-danger">{{$errors->first('name')}}</span>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="descripProducto">Descripción</label>
-                        <textarea class="form-control" name="description" id="descripProducto" placeholder="Descripción" style="height: 100px"></textarea>
+                        <textarea class="form-control" name="description" id="descripProducto" placeholder="Descripción" style="height: 100px">{{old('description')}}</textarea>
                         @if($errors->has('description'))
                         <span class="text-danger">{{$errors->first('description')}}</span>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="precioProducto">Precio</label>
-                        <input type="number" step="any" name="price" class="form-control" id="precioProducto" placeholder="Precio">
+                        <input type="number" step="any" name="price" class="form-control" value="{{old('price')}}" id="precioProducto" placeholder="Precio">
                         @if($errors->has('price'))
                         <span class="text-danger">{{$errors->first('price')}}</span>
                         @endif

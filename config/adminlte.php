@@ -354,11 +354,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
             'can' => 'ver-usuarios'
         ],
-        [
+/*         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ], */
         /* [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',

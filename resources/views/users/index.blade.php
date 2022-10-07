@@ -85,15 +85,6 @@
     } );
 </script>
 
-@if (session('delete') == 'ok')
-<script>
-    Swal.fire(
-        'Borrado!',
-        'El usuario ha sido borrado',
-        'success'
-    )
-</script>
-@endif
 <script>
     $('.formDelete').submit(function(e) {
         e.preventDefault();
@@ -115,4 +106,24 @@
         })
     })
 </script>
+
+@if (session('delete') == 'ok')
+<script>
+    Swal.fire(
+        'Borrado!',
+        'El usuario ha sido borrado',
+        'success'
+    )
+</script>
+@endif
+
+@if (session('success') == 'ok')
+<script>
+    Swal.fire(
+        'Agregado!',
+        'El usuario ha sido agregado',
+        'success'
+    )
+</script>
+@endif
 @stop
