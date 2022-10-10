@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,4 +32,5 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::resource('products', ProductController::class);
     Route::resource('users', UserController::class);
     Route::resource('clients', ClientController::class);
+    Route::resource('dashboard', DashboardController::class);
 });

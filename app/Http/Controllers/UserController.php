@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -48,32 +50,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        $campos = [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'address' => 'required',
-            'phone' => 'required|numeric',
-            'doc_id' => 'required|numeric',
-            'roles' => 'required'
-        ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido',
-            'name.required' => 'El nombre es requerido',
-            'email.required' => 'El email es requerido',
-            'password.required' => 'La contraseña es requerida',
-            'password.same' => 'Contraseñas no concuerdan',
-            'address.required' => 'La direccion es requerida',
-            'doc_id.required' => 'El documento es requerido',
-            'doc_id.numeric' => 'El documento debe ser un numero',
-            'phone.required' => 'El telefono es requerido',
-            'phone.numeric' => 'El telefono debe ser un numero'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -118,28 +96,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        $campos = [
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required|numeric',
-            'doc_id' => 'required|numeric',
-            'roles' => 'required'
-        ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido',
-            'name.required' => 'El nombre es requerido',
-            'address.required' => 'La direccion es requerida',
-            'doc_id.required' => 'El documento es requerido',
-            'doc_id.numeric' => 'El documento debe ser un numero',
-            'phone.required' => 'El telefono es requerido',
-            'phone.numeric' => 'El telefono debe ser un numero'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
         $input = $request->all();
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);

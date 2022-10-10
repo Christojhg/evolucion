@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RolRequest;
 
 //Agregar
 use Spatie\Permission\Models\Role;
@@ -48,20 +49,8 @@ class RolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RolRequest $request)
     {
-        $campos = [
-            'name' => 'required',
-            'permission' => 'required'
-        ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido',
-            'name.required' => 'El nombre es requerido',
-            'permission.required' => 'El permiso es requerido'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
 
         $role = Role::create(['name' => $request->input('name')]);
 
@@ -107,21 +96,8 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RolRequest $request, $id)
     {
-        $campos = [
-            'name' => 'required',
-            'permission' => 'required'
-        ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido',
-            'name.required' => 'El nombre es requerido',
-            'permission.required' => 'El permiso es requerido'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
         $role = Role::find($id);
 
         $role->name = $request->input('name');

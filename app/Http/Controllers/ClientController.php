@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientStoreRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Client;
 
@@ -43,30 +45,8 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientStoreRequest $request)
     {
-        $campos = [
-            'name' => 'required',
-            'email' => 'required|unique:clients,email',
-            'address' => 'required',
-            'doc_id' => 'required|numeric',
-            'phone' => 'required|numeric'
-        ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido',
-            'name.required' => 'El nombre es requerido',
-            'email.required' => 'El email es requerido',
-            'email.unique' => 'El email ya existe',
-            'address.required' => 'La direccion es requerida',
-            'doc_id.required' => 'El documento es requerido',
-            'doc_id.numeric' => 'El documento debe ser un numero',
-            'phone.required' => 'El telefono es requerido',
-            'phone.numeric' => 'El telefono debe ser un numero'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
         Client::create($request->all());
 
         return redirect()->route('clients.index')->with('success', 'ok');
@@ -103,29 +83,8 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(ClientUpdateRequest $request, Client $client)
     {
-        $campos = [
-            'name' => 'required',
-            'email' => 'required',
-            'address' => 'required',
-            'doc_id' => 'required|numeric',
-            'phone' => 'required|numeric'
-        ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido',
-            'name.required' => 'El nombre es requerido',
-            'email.required' => 'El email es requerido',
-            'address.required' => 'La direccion es requerida',
-            'doc_id.required' => 'El documento es requerido',
-            'doc_id.numeric' => 'El documento debe ser un numero',
-            'phone.required' => 'El telefono es requerido',
-            'phone.numeric' => 'El telefono debe ser un numero'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
         $client->update($request->all());
 
         return redirect()->route('clients.index');
