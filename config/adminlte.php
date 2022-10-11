@@ -354,6 +354,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
             'can' => 'ver-usuarios'
         ],
+        [
+            'text' => 'Empresa',
+            'url'  => '/companies',
+            'icon' => 'fas fa-fw fa-user',
+        ],
 /*         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
