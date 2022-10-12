@@ -6,9 +6,17 @@ use App\Http\Requests\CompanyStoreRequest;
 use App\Http\Requests\CompanyUpdateRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-empresa|crear-empresa|editar-empresa|borrar-empresa')->only('index');
+        $this->middleware('permission:crear-empresa', ['only' => ['create','store']]);
+        $this->middleware('permission:editar-empresa', ['only' => ['edit','update']]);
+        $this->middleware('permission:borrar-empresa', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,8 +51,11 @@ class CompanyController extends Controller
     {
         $company = $request->all();
 
-        if($photo = $request->file('photo')){
-            $company['photo'] = $request->file('photo')->store('uploads', 'public');
+        if($image = $request->file('photo')){
+            $destinationPath = public_path('/logo_empresa/');
+            $name = $image->getClientOriginalName();
+            $image->move($destinationPath,$name);
+            $company['photo'] = $name;
         }
 
         Company::create($company);
@@ -88,13 +99,16 @@ class CompanyController extends Controller
     public function update(CompanyUpdateRequest $request, $id)
     {
         if ($request->hasFile('photo')){
-            $photo = $request->file('photo')->store('uploads',' public');
+            $image = $request->photo;
+            $name = $image->getClientOriginalName();
+            $destinationPath = public_path('/logo_empresa/');
+            $image->move($destinationPath,$name);
             $logo = 1; 
         }else{
             $logo = 0;
         }
 
-        $company = Company::find(1);
+        $company = Company::find($id);
 
         $company->name = $request->name;
         $company->business_name = $request->business_name;
@@ -111,7 +125,7 @@ class CompanyController extends Controller
         $company->description = $request->description;
 
         if($logo == 1){
-            $company->photo = $request->photo->getClientOriginalName();
+            $company->photo = $name;
         }
 
         $company->save();

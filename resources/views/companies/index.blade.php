@@ -18,11 +18,14 @@
             @if($count > 0)
 
             @else
+                @can('crear-empresa')
                 <a href="{{route('companies.create')}}" class="btn btn-success mb-3">Crear</a>
+                @endcan
             @endif
 
             <table class="table table-light">
                 <thead>
+                    <th hidden>ID</th>
                     <th>Nombre</th>
                     <th>RUC</th>
                     <th>Email</th>
@@ -33,14 +36,20 @@
                 <tbody>
                     @foreach($company as $comp)
                     <tr>
+                        <td hidden>{{$comp->id}}</td>
                         <td>{{$comp->name}}</td>
                         <td>{{$comp->ruc}}</td>
                         <td>{{$comp->email}}</td>
                         <td>{{$comp->city}}</td>
                         <td>{{$comp->phone}}</td>
                         <td>
-                            <a href="{{route('companies.show', 1)}}" class="btn btn-info">Ver</a>
-                            <a href="{{route('companies.edit', 1)}}" class="btn btn-info">Editar</a>
+                            @can('ver-empresa')
+                            <a href="{{route('companies.show', $comp->id)}}" class="btn btn-success">Ver</a>
+                            @endcan
+                            
+                            @can('editar-empresa')
+                            <a href="{{route('companies.edit', $comp->id)}}" class="btn btn-info">Editar</a>
+                            @endcan
                         </td>
                     </tr>
                     @endforeach

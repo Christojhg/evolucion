@@ -4,7 +4,7 @@
 
 @section('content_header')
 <div class="card mb-3">
-    <img class="brand-image img-circle elevation-3 img-thumbnail rounded mx-auto d-block" src="{{asset('storage').'/'.$company->photo}}" style="width: 900px; height: 300px;" alt="">
+    <img class="brand-image img-circle elevation-3 img-thumbnail rounded mx-auto d-block" src="{{asset('/logo_empresa/').'/'.$company->photo}}" style="width: 900px; height: 300px;" alt="">
     <div class="card-body row">
             <div class="col-6">
                 <div class="form-group">

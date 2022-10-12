@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="card mb-3">
-    <form action="{{route('companies.update', 1)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('companies.update', $company->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="card-body row">

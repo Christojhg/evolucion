@@ -346,18 +346,19 @@ return [
             'text' => 'Usuarios',
             'url'  => '/users',
             'icon' => 'fas fa-fw fa-user',
-            'can' => 'ver-rol'
+            'can' => 'ver-usuario'
         ],
         [
             'text' => 'Clientes',
             'url'  => '/clients',
             'icon' => 'fas fa-fw fa-user',
-            'can' => 'ver-usuarios'
+            'can' => 'ver-cliente'
         ],
         [
             'text' => 'Empresa',
             'url'  => '/companies',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'ver-empresa'
         ],
 /*         [
             'text' => 'change_password',
