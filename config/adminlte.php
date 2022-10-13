@@ -63,6 +63,8 @@ return [
     |
     */
 
+    
+
     'logo' => '<b>Sistema FPYME</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
@@ -327,44 +329,44 @@ return [
         [
             'text' => 'Dashboard',
             'url'  => '/dashboard',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-chart-pie',
         ],
         [
             'text' => 'Productos',
             'url'  => '/products',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-store',
             'can' => 'ver-producto'
         ],
         [
             'text' => 'Roles',
             'url'  => '/roles',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-user-lock',
             'can' => 'ver-rol'
             
         ],
         [
             'text' => 'Usuarios',
             'url'  => '/users',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-users',
             'can' => 'ver-usuario'
         ],
         [
             'text' => 'Clientes',
             'url'  => '/clients',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-people-arrows',
             'can' => 'ver-cliente'
         ],
         [
             'text' => 'Empresa',
             'url'  => '/companies',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-building',
             'can' => 'ver-empresa'
         ],
-/*         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+        [
+            'text' => 'Cambiar Contraseña',
+            'url'  => '/passwords',
             'icon' => 'fas fa-fw fa-lock',
-        ], */
+        ],
         /* [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',

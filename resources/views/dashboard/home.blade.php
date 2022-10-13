@@ -22,7 +22,7 @@
                                         <h5>Usuarios</h5>
 
                                         <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$users}}</span></h2>
-                                        <p class="m-b-0 text-right"><a href="" class="text-white">Ver más</a></p>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -32,8 +32,8 @@
                                     <div class="card-block">
                                         <h5>Productos</h5>
 
-                                        <h2 class="text-right"><i class="fa fa-user-lock f-left"></i><span>{{$products}}</span></h2>
-                                        <p class="m-b-0 text-right"><a href="" class="text-white">Ver más</a></p>
+                                        <h2 class="text-right"><i class="fa fa-store f-left"></i><span>{{$products}}</span></h2>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -43,8 +43,8 @@
                                     <div class="card-block">
                                         <h5>Clientes</h5>
 
-                                        <h2 class="text-right"><i class="fa fa-blog f-left"></i><span>{{$clients}}</span></h2>
-                                        <p class="m-b-0 text-right"><a href="" class="text-white">Ver más</a></p>
+                                        <h2 class="text-right"><i class="fa fa-people-arrows f-left"></i><span>{{$clients}}</span></h2>
+                                        
                                     </div>
                                 </div>
                             </div>
