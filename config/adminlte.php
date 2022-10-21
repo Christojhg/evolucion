@@ -332,6 +332,12 @@ return [
             'icon' => 'fas fa-fw fa-chart-pie',
         ],
         [
+            'text' => 'Facturas',
+            'url'  => '/invoices',
+            'icon' => 'fas fa-fw fa-receipt',
+            'can' => 'ver-factura'
+        ],
+        [
             'text' => 'Productos',
             'url'  => '/products',
             'icon' => 'fas fa-fw fa-store',
@@ -504,12 +510,12 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'location' => '//cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js',
                 ],
             ],
         ],
