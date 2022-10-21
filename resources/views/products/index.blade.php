@@ -3,24 +3,38 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="container">
-    <br>
-    <div class="card">
-        <div class="card-header">
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
             <h1>Productos</h1>
+            <hr class="bg-dark w-100">
         </div>
-        <div class="card-body">
+    </div>
+    <div class="row p-2 d-flex mb-3">
+        <div class="col-1 m-auto">
+            <a href="#" class="btn btn-success rounded-circle" data-toggle="modal" data-target="#modalCreate">N</a>
+        </div>
+        <div class="col-8 d-flex p-2 m-auto">
+            <input type="hidden" class="form-control mx-2 w-50">
+        </div>
+        <div class="col-2 m-auto">
+            <button class="btn btn-success mx-2"> Excel</button>
+            <button class="btn btn-danger mx-2">PDF</button>
+            <button class="btn btn-primary rounded-circle mx-2">P</button>
+        </div>
+    </div>
 
-            <a href="#" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalCreate">Nuevo Producto</a>
-            
+    {{-- tabla de contenido --}}
+    <div class="row">
+        <div class="col-12">
             <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableProducts">
-                <thead style="background-color:#6777ef">
+                <thead style="background-color:#ffff" class="text-center">
                     <th hidden>ID</th>
-                    <th style="color:#fff;">Código</th>
-                    <th style="color:#fff;">Nombre</th>
-                    <th style="color:#fff;">Descripción</th>
-                    <th style="color:#fff;">Precio</th>
-                    <th style="color:#fff;">Acciones</th>
+                    <th style="">Código</th>
+                    <th style="">Nombre</th>
+                    <th style="">Descripción</th>
+                    <th style="">Precio</th>
+                    <th style="">Acciones</th>
                 </thead>
                 <tbody>
                     @foreach($products as $product)
@@ -31,7 +45,7 @@
                         <td>{{$product->description}}</td>
                         <td>{{$product->price}}</td>
                         <td>
-                            <form action="{{route('products.destroy', $product->id)}}" class="formDelete" method="POST">
+                            <form action="{{route('products.destroy', $product->id)}}" class="formDelete text-center" method="POST">
                                 @can('editar-producto')
                                 <a href="#" data-toggle="modal" data-target="#modalEdit{{$product->id}}" class="btn btn-info">Editar</a>
                                 @endcan
@@ -48,7 +62,6 @@
                     @endforeach()
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>
