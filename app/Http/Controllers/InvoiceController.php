@@ -107,7 +107,7 @@ class InvoiceController extends Controller
         $voucher->voucher_date = $actualDate;
         $voucher->id_voucher_status = $status->id;
         $voucher->id_currency = $currency;
-        $voucher->id_companie = 3;
+        $voucher->id_companie = 1;
         $voucher->id_user = $user;
         $voucher->id_client = $client_find->id;
 
