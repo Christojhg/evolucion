@@ -8,6 +8,8 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\VoucherController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +39,8 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::resource('dashboard', DashboardController::class);
     Route::resource('companies', CompanyController::class);
     Route::resource('passwords', PasswordController::class);
+    Route::resource('invoices', InvoiceController::class);
+    Route::resource('vouchers', VoucherController::class);
 
     //Cambio de contraseña
     Route::post('changePassword',[PasswordController::class, 'changePassword'])->name('changePassword');
