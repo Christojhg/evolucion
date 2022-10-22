@@ -35,7 +35,7 @@
                         <td>{{$invoice->voucher_serie}}</td>
                         <td>{{$invoice->client->name}}</td>
                         <td>{{$invoice->voucher_date}}</td>
-                        <td>{{$invoice->voucher_status->name}}</td>
+                        <td><h5><span class="badge badge-dark">{{$invoice->voucher_status->name}}</span></h5></td>
                         <td>
                             @can('ver-factura')
                             <a href="{{route('invoices.show',$invoice->id)}}" class="btn btn-success">Ver</a>

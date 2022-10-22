@@ -13,10 +13,32 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        //Tarjetas
+        $users = $this->usersCount();
+        $products = $this->productsCount();
+        $clients = $this->clientsCount();
+        //Graficos ChartJS
         $dataBar = $this->barSales();
         $dataPie = $this->pieProducts();
+        $dataBar2 = $this->salesClient();
 
-        return view('dashboard.index', $dataBar, $dataPie);
+        return view('dashboard.index', compact('dataBar', 'dataPie', 'dataBar2', 'users', 'products', 'clients'));
+    }
+
+    public function salesClient()
+    {
+        $clientsSales = DB::select("CALL sp_salesclients");
+
+        $dataBar2 = [];
+
+        foreach ($clientsSales as $sale) {
+            $dataBar2['label'][] = $sale->name;
+            $dataBar2['data'][] = $sale->ventas;
+        }
+
+        $dataBar2['dataBar2'] = json_encode($dataBar2);
+
+        return $dataBar2;
     }
 
     public function pieProducts()
@@ -30,7 +52,7 @@ class DashboardController extends Controller
             $dataPie['data'][] = $product->cantidad;
         }
 
-        $dataPie['dataPie'] = json_encode($dataPie); 
+        $dataPie['dataPie'] = json_encode($dataPie);
 
 
 

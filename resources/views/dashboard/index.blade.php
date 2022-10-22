@@ -8,10 +8,6 @@
 
 @section('content')
 
-@php
-use App\Http\Controllers\DashboardController;
-@endphp
-
 <section class="section">
     <br>
     <div class="section-body">
@@ -26,7 +22,7 @@ use App\Http\Controllers\DashboardController;
                                     <div class="card-block">
                                         <h5>Usuarios</h5>
 
-                                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{DashboardController::usersCount()}}</span></h2>
+                                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$users}}</span></h2>
 
                                     </div>
                                 </div>
@@ -37,7 +33,7 @@ use App\Http\Controllers\DashboardController;
                                     <div class="card-block">
                                         <h5>Productos</h5>
 
-                                        <h2 class="text-right"><i class="fa fa-store f-left"></i><span>{{DashboardController::productsCount()}}</span></h2>
+                                        <h2 class="text-right"><i class="fa fa-store f-left"></i><span>{{$products}}</span></h2>
 
                                     </div>
                                 </div>
@@ -48,7 +44,7 @@ use App\Http\Controllers\DashboardController;
                                     <div class="card-block">
                                         <h5>Clientes</h5>
 
-                                        <h2 class="text-right"><i class="fa fa-people-arrows f-left"></i><span>{{DashboardController::clientsCount()}}</span></h2>
+                                        <h2 class="text-right"><i class="fa fa-people-arrows f-left"></i><span>{{$clients}}</span></h2>
 
                                     </div>
                                 </div>
@@ -59,6 +55,10 @@ use App\Http\Controllers\DashboardController;
 
                             <div class="col-md-4 col-xl-4">
                                 <canvas id="pie-products"></canvas>
+                            </div>
+
+                            <div class="col-md-4 col-xl-4">
+                                <canvas id="chart-clients"></canvas>
                             </div>
                         </div>
                     </div>
@@ -79,8 +79,8 @@ use App\Http\Controllers\DashboardController;
     $(document).ready(function() {
 
 
-        const cData = JSON.parse(`<?php echo $dataBar; ?>`)
-        console.log(cData)
+        var cData = <?php echo json_encode($dataBar) ?>;
+        
         const ctx = document.getElementById('chart-ventas').getContext('2d');
 
         const myChart = new Chart(ctx, {
@@ -105,11 +105,11 @@ use App\Http\Controllers\DashboardController;
             },
             options: {
                 scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                    y: {
+                        
+                        beginAtZero: true
+                        
+                    }
                 }
             }
         })
@@ -118,7 +118,7 @@ use App\Http\Controllers\DashboardController;
 <script>
     $(document).ready(function() {
 
-        const cData = JSON.parse(`<?php echo $dataPie; ?>`)
+        var cData = <?php echo json_encode($dataPie) ?>;
         const ctx = document.getElementById('pie-products').getContext('2d');
 
         const myChart = new Chart(ctx, {
@@ -142,5 +142,38 @@ use App\Http\Controllers\DashboardController;
         })
     });
 </script>
+<script>
+    $(document).ready(function() {
+        var cData = <?php echo json_encode($dataBar2) ?>;
 
+        const ctx = document.getElementById('chart-clients').getContext('2d');
+
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: cData.label,
+                datasets: [{
+                    label: 'Clientes con mas ventas',
+                    data: cData.data,
+                    backgroundColor: [
+                        '#47B39C',
+                        '#47B39C',
+                        '#47B39C',
+                    ],
+                    borderWidth: 1
+                }]
+
+            },
+            options: {
+                scales: {
+                    y: {
+                        
+                        beginAtZero: true
+                        
+                    }
+                }
+            }
+        })
+    });
+</script>
 @stop
