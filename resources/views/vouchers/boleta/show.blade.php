@@ -36,7 +36,7 @@
                 <div class="col-12">
                   <h4>
                     <i class="fas fa-globe"></i>
-                    <small class="float-right">Fecha: 12/12/2022</small>
+                    <small class="float-right">Fecha: {{$voucher->voucher_date}}</small>
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -46,25 +46,25 @@
                 <div class="col-sm-4 invoice-col">
                   De
                   <address>
-                    <strong>Empresa</strong><br>
+                    <strong>Empresa {{$voucher->company->name}}</strong><br>
                     Limaj<br>
                     Lima, Lima<br>
-                    Phone: 999 999999<br>
-                    Email: corre@gmail.com
+                    Phone: {{$voucher->company->phone}}<br>
+                    Email: {{$voucher->company->email}}
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                   Para
                   <address>
-                    <strong>Cliente</strong><br>
-                    Celular: 90999999<br>
-                    Correo: cliente@gmail.com
+                    <strong>Cliente {{$voucher->client->name}}</strong><br>
+                    Celular: {{$voucher->client->phone}}<br>
+                    Correo: {{$voucher->client->email}}
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <h2>Boleta : 123-11111</h2><br>
+                  <h2>Boleta : {{$voucher->voucher_serie}}</h2><br>
                 </div>
                 <!-- /.col -->
               </div>
@@ -85,12 +85,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <td>codigo1</td>
-                        <td>producto 1</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td></td> 
+                    @foreach($voucher_details as $voucher_detail)
+                            <tr>
+                                <td>{{$voucher_detail->product->cod_prod}}</td>
+                                <td>{{$voucher_detail->product->name}}</td>
+                                <td>{{$voucher_detail->price}}</td>
+                                <td>{{$voucher_detail->quantity}}</td>
+                                <td>{{$voucher->currency->gloss}} {{$voucher_detail->price * $voucher_detail->quantity}}</td>
+                                <td hidden>{{$subtotal = $voucher_detail->price * $voucher_detail->quantity + $subtotal}}</td>
+                            </tr>
+                            @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -115,12 +119,12 @@
                   <div class="table-responsive">
                     <table class="table">
                       <tr>
-                        <th style="width:50%">Subtotal:</th>
-                        <td>100</td>
+                        <th style="width:50%">Subtotal :</th>
+                        <td>{{$subtotal}}</td>
                       </tr>
                       <tr>
                         <th>Total:</th>
-                        <td>100</td>
+                        <td>{{$subtotal}}</td>
                       </tr>
                     </table>
                   </div>

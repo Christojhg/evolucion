@@ -23,16 +23,18 @@
                     <th>Acciones</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td hidden>Id</td>
-                        <td>Cod001</td>
-                        <td>Cliente 1</td>
-                        <td>Estado 1</td>
-                        <td>21/10/2022</td>
-                        <td>
-                            <a href="{{route('voucher.show',1)}}"><button type="submit" class="btn btn-warning">Ver</button></a>
-                        </td>
-                    </tr>
+                @foreach($vouchers as $voucher)
+                            <tr>
+                                <td hidden>{{$voucher->id}}</td>
+                                <td>{{$voucher->voucher_serie}}</td>
+                                <td>{{$voucher->client->name}}</td>
+                                <td>{{$voucher->voucher_status->name}}</td>
+                                <td>{{$voucher->voucher_date}}</td>
+                                <td>
+                                    <a href="{{route('voucher.show',$voucher->id)}}" class="btn btn-success">Ver</a>
+                                </td>
+                            </tr>
+                            @endforeach
                 </tbody>
             </table>
         </div>

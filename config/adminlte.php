@@ -336,6 +336,12 @@ return [
             'url'  => '/invoices',
             'icon' => 'fas fa-fw fa-receipt',
             'can' => 'ver-factura'
+        ], 
+        [
+            'text' => 'Boletas',
+            'url'  => '/voucher',
+            'icon' => 'fas fa-fw fa-receipt',
+            'can' => 'ver-factura'
         ],
         [
             'text' => 'Productos',

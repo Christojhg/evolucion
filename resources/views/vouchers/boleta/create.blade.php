@@ -1,13 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Boletas')
-
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Creación de Boletas</div>
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -21,20 +19,24 @@
                         </button>
                     </div>
                     @endif
-                    <form action="#" enctype="multipart/form-data" method="POST">
+                    <form action="{{route('voucher.store')}}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="form-group col-md-6">
                                 <label for="nameClient">Cliente</label>
                                 <input list="clients" class="form-control " name="client_name" class=" form-control" required id='client_name' autocomplete="off">
                                 <datalist id="clients">
-                                    <option value="Cliente 1">
+                                    @foreach($clients as $index => $client)
+                                    <option value="{{$client->id}} | {{$client->name}}">
+                                        @endforeach
                                 </datalist>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="currencyVoucher">Moneda</label>
                                 <select name="currency_voucher" id="currencyVoucher" class="form-control">
-                                    <option value="1">1</option>
+                                    @foreach($currencies as $key => $currency)
+                                    <option value="{{$key}}">{{$currency}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -55,7 +57,9 @@
                                         <td>
                                             <input list="products" class="form-control " name="product[]" class="monto0 form-control" required id='product0' onkeyup="call_costo(0)" autocomplete="off">
                                             <datalist id="products">
-                                                <option value="Valor 1">
+                                                @foreach($products as $index => $product)
+                                                <option value="{{$product->name}}">
+                                                    @endforeach
                                             </datalist>
                                         </td>
                                         <td>
@@ -79,7 +83,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="button" class='delete btn btn-danger'>Eliminar</button>
+                            <button type="button" class='delete btn btn-danger'>Eliminar></button>
                             <button type="button" class='addmore btn btn-success'>Agregar</button>
                             <button class="btn btn-primary float-right" type="submit" id="boton" name="boton"><i class="fa fa-cloud-upload" aria-hidden="true">Guardar</i></button>
                         </div>
@@ -90,8 +94,14 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+@stop
+@section('css')
+
+@stop
+
+@section('js')
 <script>
     var i = 2;
     $(".addmore").on('click', function() {
@@ -103,7 +113,9 @@
             <td>
             <input list="products" name="product[]" class="form-control" required id='product${i}' onkeyup="call_costo(${i})" autocomplete="off">
                                             <datalist id="products">
-                                                <option value="valor 1">
+                                                @foreach($products as $index => $product)
+                                                <option value="{{$product->name}}">
+                                                    @endforeach
                                             </datalist>             
             </td>
             <td>
@@ -116,6 +128,7 @@
                 <input type='text'  id='total${i}' name='total' disabled="disabled" class="total form-control " required autocomplete="off"/>
             </td>
         </tr>`;
+
         $('.tables').append(data);
         i++;
     });
@@ -166,6 +179,7 @@
             value = value.toString().split('e');
             return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
         }
+
         // Decimal round
         if (!Math.round10) {
             Math.round10 = function(value, exp) {
@@ -190,6 +204,7 @@
     function calculo() {
         var totalInp = $('[name="total"]');
         var total_t = 0;
+
         totalInp.each(function() {
             total_t += parseFloat($(this).val());
         });
@@ -198,17 +213,18 @@
     }
 </script>
 <script>
-    //Consulta por ajax
     function call_costo(a) {
         var articulo2 = $(`[id='product${a}']`).val();
         $.ajax({
             type: "post",
-            url: "#",
+            url: "{{ route('precio_ajax_b') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
                 'product': articulo2
             },
             success: function(msg) {
+
+
                 $(`#precio${a}`).val(msg);
             }
         })
@@ -224,4 +240,4 @@
         calculo();
     }
 </script>
-@endsection
+@stop

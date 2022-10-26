@@ -40,12 +40,15 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::resource('companies', CompanyController::class);
     Route::resource('passwords', PasswordController::class);
     Route::resource('invoices', InvoiceController::class);
-    Route::resource('vouchers', VoucherController::class);
+    Route::resource('voucher', VoucherController::class);
+
 
     //Cambio de contraseña
     Route::post('changePassword',[PasswordController::class, 'changePassword'])->name('changePassword');
 
     //Obtener precio en factura
     Route::post('precio_ajax_f', [InvoiceController::class, 'precio_ajax_f'])->name('precio_ajax_f');
+    //obtener precio boleta
+    Route::post('precio_ajax_b', [VoucherController::class, 'precio_ajax_b'])->name('precio_ajax_b');
 
 });
