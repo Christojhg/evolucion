@@ -25,7 +25,7 @@
           <div class="col-12">
             <div class="callout callout-info">
               <h5><i class="fas fa-info"></i> Nota:</h5>
-              Esta pagina es solo una vista previa de la Factura. Si desea imprimir haga click en el boton imprimir que esta al final de la vista.
+              Esta pagina es solo una vista previa de la Boleta. Si desea imprimir haga click en el boton imprimir que esta al final de la vista.
             </div>
 
 
@@ -47,8 +47,8 @@
                   De
                   <address>
                     <strong>Empresa {{$voucher->company->name}}</strong><br>
-                    Limaj<br>
-                    Lima, Lima<br>
+                    {{$voucher->company->state}}<br>
+                    {{$voucher->company->street}}, {{$voucher->company->city}}<br>
                     Phone: {{$voucher->company->phone}}<br>
                     Email: {{$voucher->company->email}}
                   </address>

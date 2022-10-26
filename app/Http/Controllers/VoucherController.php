@@ -20,6 +20,13 @@ use App\Http\Requests\VoucherRequest;
 
 class VoucherController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-boleta|crear-boleta|editar-boleta|borrar-boleta')->only('index');
+        $this->middleware('permission:crear-boleta', ['only' => ['create','store']]);
+        $this->middleware('permission:editar-boleta', ['only' => ['edit','update']]);
+        $this->middleware('permission:borrar-boleta', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -84,7 +91,7 @@ class VoucherController extends Controller
         //moneda
         $currency = $request->get('currency_voucher');
         //compañia
-        $company =  Company::first()->get('id');
+        $company = Company::all()->first();
         //usuario
         $user = Auth::id();
         //cliente
@@ -100,7 +107,7 @@ class VoucherController extends Controller
         $voucher->voucher_date = $actualDate;
         $voucher->id_voucher_status = $status->id;
         $voucher->id_currency = $currency;
-        $voucher->id_companie = 1;
+        $voucher->id_companie = $company->id;
         $voucher->id_user = $user;
         $voucher->id_client = $client_find->id;
 
@@ -122,7 +129,7 @@ class VoucherController extends Controller
             }
         }
 
-        return redirect()->route('voucher.index');
+        return redirect()->route('voucher.index')->with('success', 'ok');
 
 
 

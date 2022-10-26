@@ -10,8 +10,10 @@
             <h1>Boletas</h1>
         </div>
         <div class="card-body">
-
-            <a href="{{route('voucher.create')}}" class="btn btn-success mb-3">Nuevo Boleta</a>
+        @can('crear-boleta')
+        <a href="{{route('voucher.create')}}" class="btn btn-success mb-3">Nuevo Boleta</a>
+        @endcan
+            
             
             <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableBoletas">
                 <thead style="background-color:#6777ef">
@@ -28,10 +30,13 @@
                                 <td hidden>{{$voucher->id}}</td>
                                 <td>{{$voucher->voucher_serie}}</td>
                                 <td>{{$voucher->client->name}}</td>
-                                <td>{{$voucher->voucher_status->name}}</td>
+                                <td><h5><span class="badge badge-dark">{{$voucher->voucher_status->name}}</span></h5></td>
                                 <td>{{$voucher->voucher_date}}</td>
                                 <td>
-                                    <a href="{{route('voucher.show',$voucher->id)}}" class="btn btn-success">Ver</a>
+                                @can('ver-boleta')
+                                <a href="{{route('voucher.show',$voucher->id)}}" class="btn btn-success">Ver</a>
+                                @endcan
+        
                                 </td>
                             </tr>
                             @endforeach
@@ -58,5 +63,15 @@
         });
     } );
 </script>
+
+@if (session('success') == 'ok')
+<script>
+    Swal.fire(
+        'Creada!',
+        'Boleta creada',
+        'success'
+    )
+</script>
+@endif
 
 @stop
