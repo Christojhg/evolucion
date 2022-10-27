@@ -2,30 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Client;
-use App\Models\Company;
-use App\Models\Currency;
 use App\Models\Product;
-use App\Models\User;
+use Illuminate\Http\Request;
 use App\Models\Voucher;
+use App\Models\Client;
+use App\Models\Currency;
+use App\Http\Requests\InvoiceRequest;
+use Illuminate\Support\Carbon;
+use App\Models\VoucherType;
 use App\Models\VoucherDetail;
 use App\Models\VoucherStatus;
-use App\Models\VoucherType;
-use Illuminate\Support\Carbon;
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\VoucherRequest;
 
-
-
-class VoucherController extends Controller
+class InvoiceController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:ver-boleta|crear-boleta|editar-boleta|borrar-boleta')->only('index');
-        $this->middleware('permission:crear-boleta', ['only' => ['create','store']]);
-        $this->middleware('permission:editar-boleta', ['only' => ['edit','update']]);
-        $this->middleware('permission:borrar-boleta', ['only' => ['destroy']]);
+        $this->middleware('permission:ver-factura|crear-factura|editar-factura|borrar-factura')->only('index');
+        $this->middleware('permission:crear-factura', ['only' => ['create','store']]);
+        $this->middleware('permission:editar-factura', ['only' => ['edit','update']]);
+        $this->middleware('permission:borrar-factura', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -34,8 +31,9 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        $vouchers = Voucher::where('id_voucher_type','1')->get()->all();
-        return view('vouchers.boleta.index',compact('vouchers'));
+        $invoices = Voucher::where('id_voucher_type', '2')->get()->all();
+
+        return view('invoices.index', compact('invoices'));
     }
 
     /**
@@ -45,16 +43,17 @@ class VoucherController extends Controller
      */
     public function create()
     {
-        $clients = Client::all();
         $products = Product::all();
-        $currencies = Currency::pluck('name','id')->toArray();
-        return view('vouchers.boleta.create',compact('clients','products','currencies'));
+        $clients = Client::all();
+        $currencies = Currency::pluck('name', 'id')->toArray();
+
+        return view('invoices.create', compact('products', 'clients', 'currencies'));
     }
 
-    public function precio_ajax_b(Request $request)
+    public function precio_ajax_f(Request $request)
     {
         $articulo = $request->product;
-        $producto = Product::where('name', $articulo )->first();
+        $producto = Product::where('name', $articulo)->first();
         return $producto->price;
     }
 
@@ -64,30 +63,31 @@ class VoucherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VoucherRequest $request)
+    public function store(InvoiceRequest $request)
     {
-        //tipo_boleta
-        $tipo = VoucherType::where('name', 'Boleta')->get('id')->first();
+        //tipo_factura
+        $tipo = VoucherType::where('name', 'Factura')->get('id')->first();
 
         //serie y numero
-        $ultimaEntrada = Voucher::where('id_voucher_type','1');
+        $ultimaEntrada = Voucher::where('id_voucher_type', '2');
 
         if (isset($ultimaEntrada)) {
             $numero = $ultimaEntrada->count();
             $numero++;
             $cantidad_registro = $numberFinal = str_pad($numero, 3, "0", STR_PAD_LEFT);
-            $codigo_guia = 'B' . $cantidad_registro;
+            $codigo_guia = 'F' . $cantidad_registro;
         } else {
-            $codigo_guia = "B001";
+            $codigo_guia = "F001";
             $numberFinal = "001";
         }
 
         $serie = $codigo_guia;
 
-        //fecha 
+        //fecha
         $actualDate = Carbon::now()->toDateTimeString();
+
         //estado
-        $status = VoucherStatus::where('name','No Enviado')->get('id')->first();
+        $status = VoucherStatus::where('name', 'No Enviado')->get('id')->first();
         //moneda
         $currency = $request->get('currency_voucher');
         //compañia
@@ -99,11 +99,11 @@ class VoucherController extends Controller
         $name = strstr($clientName, ' | ', true);
         $client_find = Client::where('id', $name)->first();
 
-        //voucher
+        //Factura
         $voucher = new Voucher();
         $voucher->id_voucher_type = $tipo->id;
         $voucher->voucher_serie = $serie;
-        $voucher->voucher_number =  $numberFinal;
+        $voucher->voucher_number = $numberFinal;
         $voucher->voucher_date = $actualDate;
         $voucher->id_voucher_status = $status->id;
         $voucher->id_currency = $currency;
@@ -111,12 +111,11 @@ class VoucherController extends Controller
         $voucher->id_user = $user;
         $voucher->id_client = $client_find->id;
 
-        //contador de registro y detalles
+        //contador de registros y detalle
         $cantidad = count($request->product);
-        if($cantidad != 0)
-        {
+        if ($cantidad != 0) {
             $voucher->save();
-            for($i=0 ;$i < $cantidad; $i++ ){
+            for ($i = 0; $i < $cantidad; $i++) {
                 $product_name = Product::where('name', $request->product[$i])->first();
 
                 $voucher_detail = new VoucherDetail();
@@ -129,10 +128,7 @@ class VoucherController extends Controller
             }
         }
 
-        return redirect()->route('voucher.index')->with('success', 'ok');
-
-
-
+        return redirect()->route('invoices.index')->with('success', 'ok');
     }
 
     /**
@@ -143,10 +139,11 @@ class VoucherController extends Controller
      */
     public function show($id)
     {
-        $voucher = Voucher::find($id);
-        $voucher_details = VoucherDetail::where('id_voucher', $id)->get();
+        $invoice = Voucher::find($id);
+        $invoice_details = VoucherDetail::where('id_voucher', $id)->get();
         $subtotal = 0;
-        return view('vouchers.boleta.show', compact('voucher','voucher_details','subtotal'));
+
+        return view('invoices.show', compact('invoice', 'invoice_details', 'subtotal'));
     }
 
     /**

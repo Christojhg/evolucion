@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Boletas')
+@section('title', 'Facturas')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 <br>
 <div class="card">
     <div class="card-header">
-        <a href="{{route('voucher.index')}}"><button type="button" class="btn btn-primary mb-3">Atras</button></a>
+        <a href="{{route('invoices.index')}}"><button type="button" class="btn btn-primary mb-3">Atras</button></a>
         <h3 class="card-title"></h3>
     </div>
     <!-- /.card-header -->
@@ -25,7 +25,7 @@
           <div class="col-12">
             <div class="callout callout-info">
               <h5><i class="fas fa-info"></i> Nota:</h5>
-              Esta pagina es solo una vista previa de la Boleta. Si desea imprimir haga click en el boton imprimir que esta al final de la vista.
+              Esta pagina es solo una vista previa de la Factura. Si desea imprimir haga click en el boton imprimir que esta al final de la vista.
             </div>
 
 
@@ -36,7 +36,7 @@
                 <div class="col-12">
                   <h4>
                     <i class="fas fa-globe"></i>
-                    <small class="float-right">Fecha: {{$voucher->voucher_date}}</small>
+                    <small class="float-right">Fecha: {{$invoice->voucher_date}}</small>
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -46,25 +46,26 @@
                 <div class="col-sm-4 invoice-col">
                   De
                   <address>
-                    <strong>Empresa {{$voucher->company->name}}</strong><br>
-                    {{$voucher->company->state}}<br>
-                    {{$voucher->company->street}}, {{$voucher->company->city}}<br>
-                    Phone: {{$voucher->company->phone}}<br>
-                    Email: {{$voucher->company->email}}
+                    <strong>Empresa {{$invoice->company->name}}</strong><br>
+                    {{$invoice->company->state}}<br>
+                    {{$invoice->company->street}}, {{$invoice->company->city}}<br>
+                    Phone: {{$invoice->company->phone}}<br>
+                    Email: {{$invoice->company->email}}
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                   Para
                   <address>
-                    <strong>Cliente {{$voucher->client->name}}</strong><br>
-                    Celular: {{$voucher->client->phone}}<br>
-                    Correo: {{$voucher->client->email}}
+                    <strong>Cliente {{$invoice->client->name}}</strong><br>
+                    Celular: {{$invoice->client->phone}}<br>
+                    Correo: {{$invoice->client->email}}
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <h2>Boleta : {{$voucher->voucher_serie}}</h2><br>
+                  <h2> Ruc : {{$invoice->company->ruc}}    </h2><br>
+                <h2>Factura : {{$invoice->voucher_serie}}</h2><br>
                 </div>
                 <!-- /.col -->
               </div>
@@ -85,14 +86,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($voucher_details as $voucher_detail)
+                    @foreach($invoice_details as $invoice_detail)
                             <tr>
-                                <td>{{$voucher_detail->product->cod_prod}}</td>
-                                <td>{{$voucher_detail->product->name}}</td>
-                                <td>{{$voucher_detail->price}}</td>
-                                <td>{{$voucher_detail->quantity}}</td>
-                                <td>{{$voucher->currency->gloss}} {{$voucher_detail->price * $voucher_detail->quantity}}</td>
-                                <td hidden>{{$subtotal = $voucher_detail->price * $voucher_detail->quantity + $subtotal}}</td>
+                                <td>{{$invoice_detail->product->cod_prod}}</td>
+                                <td>{{$invoice_detail->product->name}}</td>
+                                <td>{{$invoice_detail->price}}</td>
+                                <td>{{$invoice_detail->quantity}}</td>
+                                <td>{{$invoice->currency->gloss}} {{$invoice_detail->price * $invoice_detail->quantity}}</td>
+                                <td hidden>{{$subtotal = $invoice_detail->price * $invoice_detail->quantity + $subtotal}}</td>
                             </tr>
                             @endforeach
                     </tbody>
@@ -120,11 +121,15 @@
                     <table class="table">
                       <tr>
                         <th style="width:50%">Subtotal :</th>
-                        <td>{{$subtotal}}</td>
+                        <td>{{$invoice->currency->gloss}} {{$subtotal}}</td>
+                      </tr>
+                      <tr>
+                        <th style="width:50%">IGV 18% :</th>
+                        <td>{{$invoice->currency->gloss}} {{$subtotal * 0.18}}</td>
                       </tr>
                       <tr>
                         <th>Total:</th>
-                        <td>{{$subtotal}}</td>
+                        <td>{{$invoice->currency->gloss}} {{$subtotal + $subtotal * 0.18}}</td>
                       </tr>
                     </table>
                   </div>

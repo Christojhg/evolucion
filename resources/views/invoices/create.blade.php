@@ -1,12 +1,19 @@
 @extends('adminlte::page')
 
+@section('title', 'Dashboard')
+
+@section('content_header')
+
+@stop
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <br>
+        <br>
             <div class="card">
-                <div class="card-header"><h2>Crear nueva boleta<h2></div>
+            <div class="card-header"><h2>Crear nueva factura<h2></div>
+
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -20,7 +27,7 @@
                         </button>
                     </div>
                     @endif
-                    <form action="{{route('voucher.store')}}" enctype="multipart/form-data" method="POST">
+                    <form action="{{route('invoices.store')}}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="form-group col-md-6">
@@ -29,7 +36,7 @@
                                 <datalist id="clients">
                                     @foreach($clients as $index => $client)
                                     <option value="{{$client->id}} | {{$client->name}}">
-                                        @endforeach
+                                    @endforeach
                                 </datalist>
                             </div>
                             <div class="form-group col-md-6">
@@ -67,24 +74,38 @@
                                             <input type='number' id='cantidad0' name='cantidad[]' max="" min="1" class="monto0 form-control" onkeyup="multi(0)" required autocomplete="off" />
                                         </td>
                                         <td>
-                                            <input type='text' id='precio0' name='precio[]' class="monto0 form-control" onkeyup="multi(0)" required autocomplete="off" readonly />
+                                            <input type='number' id='precio0' name='precio[]' class="monto0 form-control" onkeyup="multi(0)" required autocomplete="off" readonly />
                                         </td>
                                         <td>
-                                            <input type='text' id='total0' name='total' readonly="readonly" class="monto0 form-control" required autocomplete="off" />
+                                            <input type='number' id='total0' name='total' readonly="readonly" class="monto0 form-control" required autocomplete="off" readonly />
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tbody>
+                                    <tr style="background-color: #f5f5f500;" align="center">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Subtotal :</td>
+                                        <td colspan="2"><input id='sub_total' type="text" name="sub_total_sin_igv" readonly class="form-control" required /></td>
+                                    </tr>
+                                    <tr style="background-color: #f5f5f500;" align="center">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>IGV :</td>
+                                        <td colspan="2"><input id='igv' type="text" disabled="disabled" class="form-control" required /></td>
+                                    </tr>
                                     <tr align="center">
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td>Total :</td>
-                                        <td colspan="2"><input id='total_final' type="text" name="total_final" readonly="" class="form-control" required /></td>
+                                        <td colspan="2"><input id='total_final' type="text" name="precio_final_igv" readonly="" class="form-control" required /></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="button" class='delete btn btn-danger'>Eliminar></button>
+                            <button type="button" class='delete btn btn-danger'>Eliminar</button>
                             <button type="button" class='addmore btn btn-success'>Agregar</button>
                             <button class="btn btn-primary float-right" type="submit" id="boton" name="boton"><i class="fa fa-cloud-upload" aria-hidden="true">Guardar</i></button>
                         </div>
@@ -95,9 +116,8 @@
         </div>
     </div>
 </div>
-
-
 @stop
+
 @section('css')
 
 @stop
@@ -123,7 +143,7 @@
                 <input type='number' id='cantidad${i}' name='cantidad[]' class="monto${i} form-control" onkeyup="multi(${i})" required  autocomplete="off" max=""/>
             </td>
             <td>
-                <input type='text' id='precio${i}' name='precio[]' class="monto${i} form-control" onkeyup="multi(${i})" required readonly  autocomplete="off"/>
+                <input type='text' id='precio${i}' name='precio[]' class="monto${i} form-control" onkeyup="multi(${i})" required  autocomplete="off"/>
             </td>
             <td>
                 <input type='text'  id='total${i}' name='total' disabled="disabled" class="total form-control " required autocomplete="off"/>
@@ -210,7 +230,12 @@
             total_t += parseFloat($(this).val());
         });
         total_t = Math.round10(total_t, -2);
-        $('#total_final').val(total_t);
+        $('#sub_total').val(total_t);
+
+        var igv = Math.round10(total_t * 18 / 100, -2);
+        $('#igv').val(igv);
+        var totales = Math.round10(igv + total_t, -2);
+        $('#total_final').val(totales);
     }
 </script>
 <script>
@@ -218,7 +243,7 @@
         var articulo2 = $(`[id='product${a}']`).val();
         $.ajax({
             type: "post",
-            url: "{{ route('precio_ajax_b') }}",
+            url: "{{ route('precio_ajax_f') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
                 'product': articulo2

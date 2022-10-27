@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\VoucherController;
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,16 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::resource('dashboard', DashboardController::class);
     Route::resource('companies', CompanyController::class);
     Route::resource('passwords', PasswordController::class);
-    Route::resource('voucher',VoucherController::class);
+    Route::resource('invoices', InvoiceController::class);
+    Route::resource('voucher', VoucherController::class);
+
+
     //Cambio de contraseña
     Route::post('changePassword',[PasswordController::class, 'changePassword'])->name('changePassword');
+
+    //Obtener precio en factura
+    Route::post('precio_ajax_f', [InvoiceController::class, 'precio_ajax_f'])->name('precio_ajax_f');
+    //obtener precio boleta
+    Route::post('precio_ajax_b', [VoucherController::class, 'precio_ajax_b'])->name('precio_ajax_b');
+
 });
