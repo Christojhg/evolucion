@@ -32,16 +32,15 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('roles', RolController::class);
+    Route::resource('roles', RolController::class)->except('show');
     Route::resource('products', ProductController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('clients', ClientController::class);
-    Route::resource('dashboard', DashboardController::class);
-    Route::resource('companies', CompanyController::class);
-    Route::resource('passwords', PasswordController::class);
-    Route::resource('invoices', InvoiceController::class);
-    Route::resource('voucher', VoucherController::class);
-
+    Route::resource('users', UserController::class)->except('show');
+    Route::resource('clients', ClientController::class)->except('show');
+    Route::resource('dashboard', DashboardController::class)->only('index');
+    Route::resource('companies', CompanyController::class)->except('destroy');
+    Route::resource('passwords', PasswordController::class)->only('index');
+    Route::resource('invoices', InvoiceController::class)->except('edit','update','destroy');
+    Route::resource('voucher', VoucherController::class)->except('edit','update','destroy');
 
     //Cambio de contraseña
     Route::post('changePassword',[PasswordController::class, 'changePassword'])->name('changePassword');
