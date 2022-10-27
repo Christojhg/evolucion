@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                <h5 class="modal-title h2" id="exampleModalLabel">Editar Producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,13 +22,19 @@
                 <form action="{{route('products.update', $product->id)}}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <div class="form-group">
-                        <label for="codigoProducto">Código</label>
-                        <input type="text" name="cod_prod" class="form-control" id="codigoProducto" value="{{$product->cod_prod}}" placeholder="Código">
-                    </div>
-                    <div class="form-group">
-                        <label for="nameProducto">Nombre</label>
-                        <input type="text" name="name" class="form-control" id="nameProducto" value="{{$product->name}}" placeholder="Nombre">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="codigoProducto">Código</label>
+                                <input type="text" name="cod_prod" class="form-control" id="codigoProducto" value="{{$product->cod_prod}}" placeholder="Código">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="nameProducto">Nombre</label>
+                                <input type="text" name="name" class="form-control" id="nameProducto" value="{{$product->name}}" placeholder="Nombre">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="descripProducto">Descripción</label>
@@ -38,8 +44,10 @@
                         <label for="precioProducto">Precio</label>
                         <input type="number" step="any" name="price" class="form-control" id="precioProducto" value="{{$product->price}}" placeholder="Precio">
                     </div>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </form>
             </div>
         </div>
