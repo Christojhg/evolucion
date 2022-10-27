@@ -7,27 +7,43 @@
 @stop
 
 @section('content')
-<div class="container">
-    <br>
-    <div class="card">
-        <div class="card-header">
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
             <h1>Usuarios</h1>
+            <hr class="bg-dark w-100">
         </div>
+    </div>
+
+    <div class="row p-2 d-flex mb-3">
+        <div class="col-1 m-auto">
+            @can('crear-usuario')
+            <a class="btn btn-success rounded-circle" href="{{route('users.create')}}">N</a>
+            @endcan
+        </div>
+        <div class="col-8 d-flex p-2 m-auto">
+            <input type="hidden" class="form-control mx-2 w-50">
+        </div>
+        <div class="col-2 m-auto">
+            <button class="btn btn-success mx-2"> Excel</button>
+            <button class="btn btn-danger mx-2">PDF</button>
+            <button class="btn btn-primary rounded-circle mx-2">P</button>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="card-body">
 
-            @can('crear-usuario')
-            <a class="btn btn-success mb-3" href="{{route('users.create')}}">Nuevo Usuario</a>
-            @endcan
-            <table class="table table-striped mt-2 nowrap" style="width: 100%;" id="tableUsers">
-                <thead style="background-color:#6777ef">
+            <table class="table table-striped mt-2 nowrap text-center" style="width: 100%;" id="tableUsers">
+                <thead style="background-color:#ffff" class="text-center">
                     <th hidden>ID</th>
-                    <th style="color:#fff;">Nombre</th>
-                    <th style="color:#fff;">Email</th>
-                    <th style="color:#fff;">Rol</th>
-                    <th style="color:#fff;">Direccion</th>
-                    <th style="color:#fff;">Doc. Identidad</th>
-                    <th style="color:#fff;">Telefono</th>
-                    <th style="color:#fff;">Acciones</th>
+                    <th style="">Nombre</th>
+                    <th style="">Email</th>
+                    <th style="">Rol</th>
+                    <th style="">Direccion</th>
+                    <th style="">Doc. Identidad</th>
+                    <th style="">Telefono</th>
+                    <th style="">Acciones</th>
                 </thead>
                 <tbody>
                     @foreach($users as $user)
@@ -48,14 +64,14 @@
                         <td>
                             <form action="{{route('users.destroy', $user->id)}}" class="formDelete" method="POST">
                                 @can('editar-usuario')
-                                <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}">Editar</a>
+                                <a class="btn btn-info rounded-circle" href="{{ route('users.edit',$user->id) }}">E</a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
 
                                 @can('borrar-usuario')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger rounded-circle">D</button>
                                 @endcan
                             </form>
                         </td>
