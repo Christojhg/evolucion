@@ -17,7 +17,7 @@
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
             @can('crear-cliente')
-            <a class="btn btn-success rounded-circle" href="{{route('clients.create')}}">N</a>
+            <a class="btn btn-primary rounded-circle" href="{{route('clients.create')}}">N</a>
             @endcan
         </div>
         <div class="col-8 d-flex p-2 m-auto">

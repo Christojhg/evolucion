@@ -2,27 +2,33 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear Producto</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title h2" id="exampleModalLabel">Nuevo Producto</h5>
+                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> --}}
             </div>
             <div class="modal-body">
                 <form action="{{route('products.store')}}" id="formCreate" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label for="codigoProducto">Código</label>
-                        <input type="text" name="cod_prod" class="form-control" value="{{old('cod_prod')}}" id="codigoProducto" placeholder="Código">
-                        @if($errors->has('cod_prod'))
-                        <span class="text-danger">{{$errors->first('cod_prod')}}</span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="nameProducto">Nombre</label>
-                        <input type="text" name="name" class="form-control" value="{{old('name')}}" id="nameProducto" placeholder="Nombre">
-                        @if($errors->has('name'))
-                        <span class="text-danger">{{$errors->first('name')}}</span>
-                        @endif
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="codigoProducto">Código</label>
+                                <input type="text" name="cod_prod" class="form-control" value="{{old('cod_prod')}}" id="codigoProducto" placeholder="Código">
+                                @if($errors->has('cod_prod'))
+                                <span class="text-danger">{{$errors->first('cod_prod')}}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="nameProducto">Nombre</label>
+                                <input type="text" name="name" class="form-control" value="{{old('name')}}" id="nameProducto" placeholder="Nombre">
+                                @if($errors->has('name'))
+                                <span class="text-danger">{{$errors->first('name')}}</span>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="descripProducto">Descripción</label>
@@ -39,7 +45,7 @@
                         @endif
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-success" id="ajaxSubmit">Guardar</button>
                     </div>
                 </form>
