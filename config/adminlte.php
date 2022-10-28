@@ -523,6 +523,16 @@ return [
                     'asset' => false,
                     'location' => '//cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js',
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js',
+                ],
             ],
         ],
         'Sweetalert2' => [

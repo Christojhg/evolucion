@@ -84,6 +84,7 @@
         const ctx = document.getElementById('chart-ventas').getContext('2d');
 
         const myChart = new Chart(ctx, {
+            plugins: [ChartDataLabels],
             type: 'bar',
             data: {
                 labels: cData.label,
@@ -110,6 +111,19 @@
                         beginAtZero: true
                         
                     }
+                },
+                plugins: {
+                    datalabels: {
+                        font: {
+                            weight: 'bold',
+                            size: 10
+                        },
+                        color: 'black'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Ventas por día'
+                    }
                 }
             }
         })
@@ -119,6 +133,11 @@
     $(document).ready(function() {
 
         var cData = <?php echo json_encode($dataPie) ?>;
+
+        const dataNumber = cData.data.map(str => {
+            return Number(str);
+        });
+
         const ctx = document.getElementById('pie-products').getContext('2d');
 
         const myChart = new Chart(ctx, {
@@ -127,7 +146,7 @@
                 labels: cData.label,
                 datasets: [{
                     label: 'Producto mas vendido',
-                    data: cData.data,
+                    data: dataNumber,
                     backgroundColor: [
                         '#EC6B56',
                         '#FFC154',
@@ -138,6 +157,23 @@
                     borderWidth: 1
                 }]
 
+            },
+            options: {
+                tooltips: {
+                    enabled: true
+                },
+                plugins: {
+                    labels: {
+                        render: 'percentage',
+                        precision: 2,
+                        fontStyle: 'bold',
+                        fontSize: 13
+                    },
+                    title: {
+                        display: true,
+                        text: 'Productos más vendidos'
+                    }
+                }
             }
         })
     });
@@ -149,11 +185,12 @@
         const ctx = document.getElementById('chart-clients').getContext('2d');
 
         const myChart = new Chart(ctx, {
+            plugins: [ChartDataLabels],
             type: 'bar',
             data: {
                 labels: cData.label,
                 datasets: [{
-                    label: 'Clientes con mas ventas',
+                    label: 'Clientes con más ventas',
                     data: cData.data,
                     backgroundColor: [
                         '#47B39C',
@@ -170,6 +207,19 @@
                         
                         beginAtZero: true
                         
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        font: {
+                            weight: 'bold',
+                            size: 10
+                        },
+                        color: 'black'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Clientes con más ventas'
                     }
                 }
             }

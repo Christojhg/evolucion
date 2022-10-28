@@ -10,6 +10,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\VoucherController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +38,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::resource('products', ProductController::class);
     Route::resource('users', UserController::class)->except('show');
     Route::resource('clients', ClientController::class)->except('show');
-    Route::resource('dashboard', DashboardController::class)->only('index');
+    Route::resource('dashboard', DashboardController::class)->only('index');   
     Route::resource('companies', CompanyController::class)->except('destroy');
     Route::resource('passwords', PasswordController::class)->only('index');
     Route::resource('invoices', InvoiceController::class)->except('edit','update','destroy');
