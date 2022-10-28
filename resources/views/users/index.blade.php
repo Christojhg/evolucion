@@ -18,16 +18,16 @@
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
             @can('crear-usuario')
-            <a class="btn btn-success rounded-circle" href="{{route('users.create')}}">N</a>
+            <a class="btn btn-success rounded-circle" href="{{route('users.create')}}"><i class="fas fa-plus"></i></a>
             @endcan
         </div>
         <div class="col-8 d-flex p-2 m-auto">
             <input type="hidden" class="form-control mx-2 w-50">
         </div>
         <div class="col-2 m-auto">
-            <button class="btn btn-success mx-2"> Excel</button>
-            <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
+            <button class="btn btn-success mx-2"><i class="far fa-file-excel"></i></button>
+            <button class="btn btn-danger mx-2"><i class="far fa-file-pdf"></i></button>
+            <button class="btn btn-primary rounded-circle mx-2"><i class="fas fa-print"></i></button>
         </div>
     </div>
 
@@ -64,14 +64,14 @@
                         <td>
                             <form action="{{route('users.destroy', $user->id)}}" class="formDelete" method="POST">
                                 @can('editar-usuario')
-                                <a class="btn btn-info rounded-circle" href="{{ route('users.edit',$user->id) }}">E</a>
+                                <a class="btn btn-info rounded-circle" href="{{ route('users.edit',$user->id) }}"><i class="fas fa-pen"></i></a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
 
                                 @can('borrar-usuario')
-                                <button type="submit" class="btn btn-danger rounded-circle">D</button>
+                                <button type="submit" class="btn btn-danger rounded-circle"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>

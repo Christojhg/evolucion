@@ -17,16 +17,16 @@
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
             @can('crear-cliente')
-            <a class="btn btn-primary rounded-circle" href="{{route('clients.create')}}">N</a>
+            <a class="btn btn-primary rounded-circle" href="{{route('clients.create')}}"><i class="fas fa-plus"></i></a>
             @endcan
         </div>
         <div class="col-8 d-flex p-2 m-auto">
             <input type="hidden" class="form-control mx-2 w-50">
         </div>
         <div class="col-2 m-auto">
-            <button class="btn btn-success mx-2"> Excel</button>
-            <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
+            <button class="btn btn-success mx-2"><i class="far fa-file-excel"></i></button>
+            <button class="btn btn-danger mx-2"><i class="far fa-file-pdf"></i></button>
+            <button class="btn btn-primary rounded-circle mx-2"><i class="fas fa-print"></i></button>
         </div>
     </div>
     <div class="row">

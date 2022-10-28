@@ -6,21 +6,23 @@
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col-12">
-            <h1>Productos</h1>
+            <h1 class="h1">Productos</h1>
             <hr class="bg-dark w-100">
         </div>
     </div>
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
-            <a href="#" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#modalCreate">N</a>
+            <a href="#" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#modalCreate">
+                <i class="fas fa-plus"></i>
+            </a>
         </div>
         <div class="col-8 d-flex p-2 m-auto">
             <input type="hidden" class="form-control mx-2 w-50">
         </div>
         <div class="col-2 m-auto">
-            <button class="btn btn-success mx-2"> Excel</button>
-            <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
+            <button class="btn btn-success mx-2"><i class="far fa-file-excel"></i></button>
+            <button class="btn btn-danger mx-2"><i class="far fa-file-pdf"></i></button>
+            <button class="btn btn-primary rounded-circle mx-2"><i class="fas fa-print"></i></button>
         </div>
     </div>
 
@@ -47,13 +49,13 @@
                         <td>
                             <form action="{{route('products.destroy', $product->id)}}" class="formDelete" method="POST">
                                 @can('editar-producto')
-                                <a href="#" data-toggle="modal" data-target="#modalEdit{{$product->id}}" class="btn btn-info rounded-circle">E</a>
+                                <a href="#" data-toggle="modal" data-target="#modalEdit{{$product->id}}" class="btn btn-info rounded-circle"><i class="fas fa-pen"></i></a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
                                 @can('borrar-producto')
-                                <button type="submit" class="btn btn-danger rounded-circle">D</button>
+                                <button type="submit" class="btn btn-danger rounded-circle"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>
