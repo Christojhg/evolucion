@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<div class="card mb-3">
+<div class="container card">
     <form action="{{route('companies.update', $company->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
@@ -68,7 +68,7 @@
                     <textarea name="description" class="form-control" id="descriptionCompany" rows="2" >{{$company->description}}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="photoCompany">Foto</label>
+                    <label for="photoCompany">Logo</label>
                     <input type="file" name="photo" id="photoCompany" class="form-control" value="{{$company->photo}}" accept="image/png, image/jpeg, image/jpg" />
                 </div>
                 <div class="form-group">

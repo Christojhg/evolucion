@@ -7,31 +7,45 @@
 @stop
 
 @section('content')
-<div class="container">
-    <br>
-    <div class="card">
-        <div class="card-header">
-            <h1>Empresa</h1>
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h1">Empresa</h1>
+            <hr class="bg-dark w-100">
         </div>
-        <div class="card-body">
-
+    </div>
+    <div class="row p-2 d-flex mb-3">
+        <div class="col-1 m-auto">
             @if($count > 0)
 
             @else
             @can('crear-empresa')
-            <a href="{{route('companies.create')}}" class="btn btn-success mb-3">Crear</a>
+                <a href="{{route('companies.create')}}" class="btn btn-primary rounded-circle">
+                    <i class="fas fa-plus"></i>
+                </a>
             @endcan
             @endif
-
+        </div>
+        <div class="col-8 d-flex p-2 m-auto">
+            <input type="hidden" class="form-control mx-2 w-50">
+        </div>
+        <div class="col-2 m-auto">
+            <button class="btn btn-success mx-2"><i class="far fa-file-excel"></i></button>
+            <button class="btn btn-danger mx-2"><i class="far fa-file-pdf"></i></button>
+            <button class="btn btn-primary rounded-circle mx-2"><i class="fas fa-print"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableCompany">
-                <thead style="background-color:#6777ef">
+                <thead style="background-color:#ffff">
                     <th hidden>ID</th>
-                    <th style="color:#fff;">Nombre</th>
-                    <th style="color:#fff;">RUC</th>
-                    <th style="color:#fff;">Email</th>
-                    <th style="color:#fff;">Ciudad</th>
-                    <th style="color:#fff;">Telefono</th>
-                    <th style="color:#fff;">Acción</th>
+                    <th style="">Nombre</th>
+                    <th style="">RUC</th>
+                    <th style="">Email</th>
+                    <th style="">Ciudad</th>
+                    <th style="">Telefono</th>
+                    <th style="">Acción</th>
                 </thead>
                 <tbody>
                     @foreach($company as $comp)

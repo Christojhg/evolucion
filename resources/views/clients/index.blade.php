@@ -53,14 +53,14 @@
                         <td>
                             <form action="{{route('clients.destroy', $client->id)}}" class="formDelete text-center" method="POST">
                                 @can('editar-cliente')
-                                <a class="btn btn-info" href="{{ route('clients.edit',$client->id) }}">Editar</a>
+                                <a class="btn btn-info rounded-circle" href="{{ route('clients.edit',$client->id) }}"><i class="fas fa-pen"></i></a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
 
                                 @can('borrar-cliente')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger rounded-circle"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>

@@ -7,22 +7,37 @@
 @stop
 
 @section('content')
-<div class="container">
-    <br>
-    <div class="card">
-        <div class="card-header">
-            <h1>Roles</h1>
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h1">Roles</h1>
+            <hr class="bg-dark w-100">
         </div>
-        <div class="card-body">
-
+    </div>
+    <div class="row p-2 d-flex mb-3">
+        <div class="col-1 m-auto">
             @can('crear-rol')
-            <a class="btn btn-success mb-3" href="{{ route('roles.create') }}">Nuevo Rol</a>
+                <a class="btn btn-primary rounded-circle" href="{{ route('roles.create') }}">
+                    <i class="fas fa-plus"></i>
+                </a>
             @endcan
+        </div>
+        <div class="col-8 d-flex p-2 m-auto">
+            <input type="hidden" class="form-control mx-2 w-50">
+        </div>
+        <div class="col-2 m-auto">
+            <button class="btn btn-success mx-2"><i class="far fa-file-excel"></i></button>
+            <button class="btn btn-danger mx-2"><i class="far fa-file-pdf"></i></button>
+            <button class="btn btn-primary rounded-circle mx-2"><i class="fas fa-print"></i></button>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-12">
             <table class="table table-striped mt-2 nowrap" style="width: 100%;" id="tableRoles">
-                <thead style="background-color:#6777ef">
-                    <th style="color:#fff;">Rol</th>
-                    <th style="color:#fff;">Acciones</th>
+                <thead style="background-color:#ffff">
+                    <th style="">Rol</th>
+                    <th style="">Acciones</th>
                 </thead>
                 <tbody>
                     @foreach($roles as $role)
@@ -31,13 +46,13 @@
                         <td>
                             <form action="{{route('roles.destroy', $role->id)}}" class="formDelete" method="POST">
                                 @can('editar-rol')
-                                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
+                                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}"><i class="fas fa-pen"></i></a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
                                 @can('borrar-rol')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>

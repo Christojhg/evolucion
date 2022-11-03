@@ -18,7 +18,7 @@
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
             @can('crear-usuario')
-            <a class="btn btn-success rounded-circle" href="{{route('users.create')}}"><i class="fas fa-plus"></i></a>
+            <a class="btn btn-primary rounded-circle" href="{{route('users.create')}}"><i class="fas fa-plus"></i></a>
             @endcan
         </div>
         <div class="col-8 d-flex p-2 m-auto">

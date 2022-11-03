@@ -62,8 +62,10 @@
                                     <input type="text" name="phone" class="form-control" value="{{old('phone', $client->phone)}}" id="telefonoCliente" placeholder="Telefono">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-info">Guardar</button>
-                            <a class="btn btn-success" href="{{route('clients.index')}}">Regresar</a>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <a class="btn btn-danger" href="{{route('clients.index')}}">Regresar</a>
+                            </div>
                         </form>
                     </div>
                 </div>
