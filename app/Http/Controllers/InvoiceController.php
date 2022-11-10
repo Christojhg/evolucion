@@ -14,6 +14,7 @@ use App\Models\VoucherDetail;
 use App\Models\VoucherStatus;
 use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class InvoiceController extends Controller
 {
@@ -29,11 +30,18 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $invoices = Voucher::where('id_voucher_type', '2')->get()->all();
+        if($request->ajax()){
+            $invoices = Voucher::where('id_voucher_type', '2')->with('client')->with('voucher_status')->get();
 
-        return view('invoices.index', compact('invoices'));
+            return DataTables::of($invoices)
+                ->addColumn('acciones', 'invoices.actions')
+                ->rawColumns(['acciones'])
+                ->make(true);
+        }
+
+        return view('invoices.index');
     }
 
     /**
