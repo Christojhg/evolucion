@@ -332,6 +332,12 @@ return [
             'icon' => 'fas fa-fw fa-chart-pie',
         ],
         [
+            'text' => 'Reportes',
+            'url'  => '/reports',
+            'icon' => 'fas fa-fw fa-file-invoice',
+            'can' => 'ver-reporte'
+        ], 
+        [
             'text' => 'Facturas',
             'url'  => '/invoices',
             'icon' => 'fas fa-fw fa-receipt',
@@ -494,9 +500,69 @@ return [
                     'location' => '//cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css',
                 ],
                 [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css',
+                ],
+                [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js',
+                ],
+            ],
+        ],
+        'DatePicker' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//code.jquery.com/ui/1.12.1/jquery-ui.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
                 ],
             ],
         ],

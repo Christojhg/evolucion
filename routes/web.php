@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\VoucherController;
 
 
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::resource('passwords', PasswordController::class)->only('index');
     Route::resource('invoices', InvoiceController::class)->except('edit','update','destroy');
     Route::resource('voucher', VoucherController::class)->except('edit','update','destroy');
+    Route::resource('reports', ReportController::class)->only('index');
 
     //Cambio de contraseña
     Route::post('changePassword',[PasswordController::class, 'changePassword'])->name('changePassword');
