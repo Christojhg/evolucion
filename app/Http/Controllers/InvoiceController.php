@@ -52,7 +52,7 @@ class InvoiceController extends Controller
     public function create()
     {
         $products = Product::all();
-        $clients = Client::all();
+        $clients = Client::whereNotNull('doc_ruc')->get();
         $currencies = Currency::pluck('name', 'id')->toArray();
 
         return view('invoices.create', compact('products', 'clients', 'currencies'));

@@ -53,13 +53,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="docUsuario">Doc. Identidad</label>
-                                        <input type="text" name="doc_id" class="form-control" value="{{old('doc_id')}}" id="docUsuario" placeholder="Email">
+                                        <input type="text" name="doc_id" class="form-control" value="{{old('doc_id')}}" maxlength="8" id="docUsuario" placeholder="DNI">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="telefonoUsuario">Telefono</label>
-                                        <input type="text" name="phone" class="form-control" value="{{old('phone')}}" id="emailUsuario" placeholder="Telefono">
+                                        <input type="text" name="phone" class="form-control" value="{{old('phone')}}" maxlength="9" id="emailUsuario" placeholder="Telefono">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

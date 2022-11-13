@@ -40,7 +40,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="docCliente">Doc. Identidad</label>
-                                        <input type="text" name="doc_id" class="form-control" value="{{old('doc_id')}}" id="docCliente" placeholder="Doc. Identidad">
+                                        <input type="text" name="doc_id" class="form-control" value="{{old('doc_id')}}" maxlength="8" id="docCliente" placeholder="Doc. Identidad">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="docCliente">Doc. RUC</label>
+                                        <input type="text" name="doc_ruc" class="form-control" value="{{old('doc_ruc')}}" maxlength="11" id="rucCliente" placeholder="Doc. RUC">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -60,7 +66,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="telefonoCliente">Telefono</label>
-                                        <input type="text" name="phone" class="form-control" value="{{old('phone')}}" id="telefonoCliente" placeholder="Telefono">
+                                        <input type="text" name="phone" class="form-control" value="{{old('phone')}}" maxlength="9" id="telefonoCliente" placeholder="Telefono">
                                     </div>
                                 </div>
                             </div>

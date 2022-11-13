@@ -23,15 +23,15 @@
                 </div>
                 <div class="form-group">
                     <label for="rucCompany">RUC</label>
-                    <input type="text" name="ruc" id="rucCompany" class="form-control" value="{{$company->ruc}}" >
+                    <input type="text" name="ruc" id="rucCompany" maxlength="11" class="form-control" value="{{$company->ruc}}" >
                 </div>
                 <div class="form-group">
                     <label for="phoneCompany">Telefono</label>
-                    <input type="text" name="phone" id="phoneCompany" class="form-control" value="{{$company->phone}}" >
+                    <input type="text" name="phone" id="phoneCompany" maxlength="7" class="form-control" value="{{$company->phone}}" >
                 </div>
                 <div class="form-group">
                     <label for="mobileCompany">Móbil</label>
-                    <input type="text" name="movile" id="mobileCompany" class="form-control" value="{{$company->movile}}">
+                    <input type="text" name="movile" id="mobileCompany" maxlength="9" class="form-control" value="{{$company->movile}}">
                 </div>
                 <div class="form-group">
                     <label for="emailCompany">Email</label>

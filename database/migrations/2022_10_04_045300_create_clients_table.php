@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('address');
-            $table->string('doc_id');
+            $table->string('doc_id')->unique();
+            $table->string('doc_ruc')->nullable()->unique();
             $table->string('phone');
             $table->timestamps();
         });
