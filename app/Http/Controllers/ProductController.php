@@ -20,6 +20,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
+
         return view('products.index', compact('products'));
     }
 
@@ -28,7 +29,9 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return redirect()->route('products.index')->with('success', 'ok');
+        return true;
+
+        //return redirect()->route('products.index')->with('success', 'ok');
     }
 
     public function edit($id)

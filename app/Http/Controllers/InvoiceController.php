@@ -13,7 +13,10 @@ use App\Models\VoucherType;
 use App\Models\VoucherDetail;
 use App\Models\VoucherStatus;
 use App\Models\Company;
+use App\Mail\InvoiceMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class InvoiceController extends Controller
 {
@@ -179,4 +182,31 @@ class InvoiceController extends Controller
     {
         //
     }
+    
+    public function invoice_send(Request $request){
+        $invoice=Voucher::find($request->id);
+        if(isset($request->w)){
+            $generado = URL::signedRoute('invoice_generate',$request->id);
+            $url="https://api.whatsapp.com/send?phone=".$invoice->client->phone."&text=hola,%20le%20envio%20el%20comprobante%20".$generado;
+            return redirect($url);
+        }else{
+            $correo = new InvoiceMailable($request->id);
+            Mail::to($invoice->client->email)->send($correo);
+            return "Mensaje enviado";
+        }
+    }
+
+    public static function invoice_generate_static($id){
+        return URL::signedRoute(
+            'invoice_generate',$id
+        );
+    }
+
+    public function invoice_generate($id){
+        $invoice=Voucher::find($id);
+        $voucher_details=VoucherDetail::where('id_voucher',$id)->get();
+        $subtotal=0;
+        return view('vouchers.show_generate',compact('invoice','voucher_details','subtotal'));
+    }
+    
 }

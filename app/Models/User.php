@@ -47,4 +47,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function userAdmin(){
+        $user = new User();
+        $user->name= 'Admin';
+        $user->email= 'adm@gmail.com';
+        $user->password=bcrypt('adm@gmail.com');
+        $user->save();
+
+        return $user;
+    }
 }

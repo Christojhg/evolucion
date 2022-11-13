@@ -142,15 +142,18 @@
                 <div class="col-12">
                   <a href="#" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Imprimir</a>
                   
-                  <form action="#"  enctype="multipart/form-data" method="post"  id="form_store">
+                  <form action="{{route('invoice_send')}}"  enctype="multipart/form-data" method="post"  id="form_store">
                     @csrf
+                    <input type="text" value="1" name="w" style="display: none">
+                    <input type="text" value="{{$invoice->id}}" name="id" style="display: none">
                     <button type="submit" class="btn btn-primary float-right" style="margin-right: 5px;">
                       Enviar Por WhatsApp
                     </button>
                   </form>
                   
-                  <form action="#"  enctype="multipart/form-data" method="post"  id="form_store">
+                  <form action="{{route('invoice_send')}}"  enctype="multipart/form-data" method="post"  id="form_store_correo">
                     @csrf
+                    <input type="text" value="{{$invoice->id}}" name="id" style="display: none">
                     <button type="submit" class="btn btn-success float-right">
                       Enviar a correo
                     </button></a>
