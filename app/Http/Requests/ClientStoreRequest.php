@@ -27,7 +27,8 @@ class ClientStoreRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|unique:clients,email',
             'address' => 'required',
-            'doc_id' => 'required|numeric',
+            'doc_id' => 'required|numeric|unique:clients,doc_id',
+            'doc_ruc' => 'nullable|numeric|unique:clients,doc_ruc',
             'phone' => 'required|numeric'
         ];
     }
@@ -42,6 +43,7 @@ class ClientStoreRequest extends FormRequest
             'address.required' => 'La direccion es requerida',
             'doc_id.required' => 'El documento es requerido',
             'doc_id.numeric' => 'El documento debe ser un numero',
+            'doc_id.unique' => 'El documento DNI ya existe',
             'phone.required' => 'El telefono es requerido',
             'phone.numeric' => 'El telefono debe ser un numero'
         ];

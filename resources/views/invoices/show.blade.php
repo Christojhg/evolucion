@@ -59,7 +59,8 @@
                   <address>
                     <strong>Cliente {{$invoice->client->name}}</strong><br>
                     Celular: {{$invoice->client->phone}}<br>
-                    Correo: {{$invoice->client->email}}
+                    Correo: {{$invoice->client->email}} <br>
+                    RUC: {{$invoice->client->doc_ruc}}
                   </address>
                 </div>
                 <!-- /.col -->

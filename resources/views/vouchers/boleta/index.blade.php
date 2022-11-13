@@ -17,7 +17,7 @@
 
             <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableBoletas">
                 <thead style="background-color:#6777ef">
-                    <th hidden>Id</th>
+                    <th>Id</th>
                     <th>Codigo</th>
                     <th>Cliente</th>
                     <th>Estado</th>
@@ -25,23 +25,7 @@
                     <th>Acciones</th>
                 </thead>
                 <tbody>
-                    @foreach($vouchers as $voucher)
-                    <tr>
-                        <td hidden>{{$voucher->id}}</td>
-                        <td>{{$voucher->voucher_serie}}</td>
-                        <td>{{$voucher->client->name}}</td>
-                        <td>
-                            <h5><span class="badge badge-dark">{{$voucher->voucher_status->name}}</span></h5>
-                        </td>
-                        <td>{{$voucher->voucher_date}}</td>
-                        <td>
-                            @can('ver-boleta')
-                            <a href="{{route('voucher.show',$voucher->id)}}" class="btn btn-success">Ver</a>
-                            @endcan
 
-                        </td>
-                    </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -58,10 +42,51 @@
 <script>
     $(document).ready(function() {
         $('#tableBoletas').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{route('voucher.index')}}",
+            dataType: 'json',
+            type: "POST",
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'voucher_serie',
+                    name: 'voucher_serie'
+                },
+                {
+                    data: 'client.name',
+                    name: 'client.name'
+                },
+                {
+                    data: 'voucher_date',
+                    name: 'voucher_date'
+                },
+                {
+                    data: 'voucher_status.name',
+                    name: 'voucher_status.name'
+                },
+                {
+                    data: 'acciones',
+                    name: 'acciones'
+                }
+            ],
             language: {
                 url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
             },
-            responsive: true
+            responsive: true,
+            columnDefs: [{
+                    targets: 0,
+                    visible: false
+                },
+                {
+                    targets: 4,
+                    render: function(data) {
+                        return `<span class="badge badge-dark">${data}</span>`;
+                    }
+                }
+            ]
         });
     });
 </script>

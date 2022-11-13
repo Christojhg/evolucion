@@ -28,6 +28,7 @@ class ClientUpdateRequest extends FormRequest
             'email' => 'required',
             'address' => 'required',
             'doc_id' => 'required|numeric',
+            'doc_ruc' => 'nullable|numeric',
             'phone' => 'required|numeric'
         ];
     }
@@ -41,6 +42,7 @@ class ClientUpdateRequest extends FormRequest
             'address.required' => 'La direccion es requerida',
             'doc_id.required' => 'El documento es requerido',
             'doc_id.numeric' => 'El documento debe ser un numero',
+            'doc_ruc.numeric' => 'El RUC debe ser un numero',
             'phone.required' => 'El telefono es requerido',
             'phone.numeric' => 'El telefono debe ser un numero'
         ];

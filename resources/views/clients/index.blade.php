@@ -34,7 +34,7 @@
             <table class="table table-striped mt-2 nowrap" style="width: 100%;" id="tableClients">
                 <thead style="background-color:#ffff" class="text-center">
                     <th hidden>ID</th>
-                    <th style=";">Nombre</th>
+                    <th style="">Nombre</th>
                     <th style="">Email</th>
                     <th style="">Direccion</th>
                     <th style="">Doc</th>

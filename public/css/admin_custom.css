@@ -30,3 +30,18 @@
 .f-right {
     float: right;
 }
+
+.btn-exportar-excel {
+    background-color: #198754 !important;
+    color: white !important;
+}
+
+.btn-exportar-pdf {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.btn-exportar-print {
+    background-color: #00a7c9 !important;
+    color: white !important;
+}

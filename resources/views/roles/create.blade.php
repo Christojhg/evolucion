@@ -40,6 +40,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="permisosRol">Permisos</label>
+                                        <input class='check_all' type='checkbox' onclick="select_all()" />
                                         <br>
                                         @foreach(array_chunk($permission, 4) as $chunk)
                                         <div class="row">
@@ -73,6 +74,14 @@
 
 @section('js')
 <script>
-    console.log('Hi!');
+    function select_all() {
+        $('input[class=name]:checkbox').each(function() {
+            if ($('input[class=check_all]:checkbox:checked').length == 0) {
+                $(this).prop("checked", false);
+            } else {
+                $(this).prop("checked", true);
+            }
+        });
+    }
 </script>
 @stop
