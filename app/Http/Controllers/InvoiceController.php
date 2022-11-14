@@ -212,9 +212,9 @@ class InvoiceController extends Controller
 
     public function invoice_generate($id){
         $invoice=Voucher::find($id);
-        $voucher_details=VoucherDetail::where('id_voucher',$id)->get();
+        $invoice_details=VoucherDetail::where('id_voucher',$id)->get();
         $subtotal=0;
-        return view('vouchers.show_generate',compact('invoice','voucher_details','subtotal'));
+        return view('vouchers.show_generate',compact('invoice','invoice_details','subtotal'));
     }
     
 }
