@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\RucValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ClientUpdateRequest extends FormRequest
@@ -28,7 +29,7 @@ class ClientUpdateRequest extends FormRequest
             'email' => 'required',
             'address' => 'required',
             'doc_id' => 'required|numeric',
-            'doc_ruc' => 'nullable|numeric',
+            'doc_ruc' => ['nullable', 'numeric', new RucValidation],
             'phone' => 'required|numeric'
         ];
     }

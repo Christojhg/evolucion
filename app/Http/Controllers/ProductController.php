@@ -29,9 +29,9 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return true;
+        //return true;
 
-        //return redirect()->route('products.index')->with('success', 'ok');
+        return redirect()->route('products.index')->with('success', 'ok');
     }
 
     public function edit($id)
