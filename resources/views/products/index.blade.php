@@ -20,7 +20,7 @@
         <div class="col-2 m-auto">
             <button class="btn btn-success mx-2"> Excel</button>
             <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
+            <button class="btn btn-primary rounded-circle mx-2"><i class="fas fa-print"></i></button>
         </div>
     </div>
 
