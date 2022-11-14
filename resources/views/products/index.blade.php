@@ -12,7 +12,7 @@
     </div>
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
-            <a href="#" class="btn btn-success rounded-circle" data-toggle="modal" data-target="#modalCreate">N</a>
+            <a href="#" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#modalCreate">N</a>
         </div>
         <div class="col-8 d-flex p-2 m-auto">
             <input type="hidden" class="form-control mx-2 w-50">
@@ -27,7 +27,7 @@
     {{-- tabla de contenido --}}
     <div class="row">
         <div class="col-12">
-            <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableProducts">
+            <table class="table table-striped mt-2 nowrap text-center" style="width:100%;" id="tableProducts">
                 <thead style="background-color:#ffff" class="text-center">
                     <th hidden>ID</th>
                     <th style="">Código</th>
@@ -45,15 +45,15 @@
                         <td>{{$product->description}}</td>
                         <td>{{$product->price}}</td>
                         <td>
-                            <form action="{{route('products.destroy', $product->id)}}" class="formDelete text-center" method="POST">
+                            <form action="{{route('products.destroy', $product->id)}}" class="formDelete" method="POST">
                                 @can('editar-producto')
-                                <a href="#" data-toggle="modal" data-target="#modalEdit{{$product->id}}" class="btn btn-info">Editar</a>
+                                <a href="#" data-toggle="modal" data-target="#modalEdit{{$product->id}}" class="btn btn-info rounded-circle">E</a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
                                 @can('borrar-producto')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger rounded-circle">D</button>
                                 @endcan
                             </form>
                         </td>

@@ -14,6 +14,7 @@ class Client extends Model
         'email',
         'address',
         'doc_id',
+        'doc_ruc',
         'phone',
     ];
 }

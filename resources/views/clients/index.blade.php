@@ -17,7 +17,7 @@
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
             @can('crear-cliente')
-            <a class="btn btn-success rounded-circle" href="{{route('clients.create')}}">N</a>
+            <a class="btn btn-primary rounded-circle" href="{{route('clients.create')}}">N</a>
             @endcan
         </div>
         <div class="col-8 d-flex p-2 m-auto">
@@ -34,7 +34,7 @@
             <table class="table table-striped mt-2 nowrap" style="width: 100%;" id="tableClients">
                 <thead style="background-color:#ffff" class="text-center">
                     <th hidden>ID</th>
-                    <th style=";">Nombre</th>
+                    <th style="">Nombre</th>
                     <th style="">Email</th>
                     <th style="">Direccion</th>
                     <th style="">Doc</th>
