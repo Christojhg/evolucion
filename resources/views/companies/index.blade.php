@@ -58,11 +58,11 @@
                         <td>{{$comp->phone}}</td>
                         <td>
                             @can('ver-empresa')
-                            <a href="{{route('companies.show', $comp->id)}}" class="btn btn-success">Ver</a>
+                            <a href="{{route('companies.show', $comp->id)}}" class="btn btn-warning rounded-circle"><i class="far fa-eye"></i></a>
                             @endcan
 
                             @can('editar-empresa')
-                            <a href="{{route('companies.edit', $comp->id)}}" class="btn btn-info">Editar</a>
+                            <a href="{{route('companies.edit', $comp->id)}}" class="btn btn-info rounded-circle"><i class="fas fa-pen"></i></a>
                             @endcan
                         </td>
                     </tr>

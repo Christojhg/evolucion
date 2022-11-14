@@ -135,19 +135,34 @@
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
+<<<<<<< Updated upstream
                   <a href="#" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Imprimir</a>
                   
                   <form action="#"  enctype="multipart/form-data" method="post"  id="form_store">
                     @csrf
                     <button type="submit" class="btn btn-primary float-right" style="margin-right: 5px;">
                       Enviar Por WhatsApp
+=======
+                  <a href="#" rel="noopener" target="_blank" class="btn btn-primary"><i class="fas fa-print"></i></a>
+                  
+                  <form action="#"  enctype="multipart/form-data" method="post"  id="form_store">
+                    @csrf
+                    <button type="submit" class="btn btn-success float-right" style="margin-right: 5px;">
+                      <i class="fab fa-whatsapp"></i>
+>>>>>>> Stashed changes
                     </button>
                   </form>
                   
                   <form action="#"  enctype="multipart/form-data" method="post"  id="form_store">
+<<<<<<< Updated upstream
                     @csrf
                     <button type="submit" class="btn btn-success float-right">
                       Enviar a correo
+=======
+                    @csrfg
+                    <button type="submit" class="btn btn-info float-right">
+                      <i class="far fa-envelope"></i>
+>>>>>>> Stashed changes
                     </button></a>
                   </form>
                   

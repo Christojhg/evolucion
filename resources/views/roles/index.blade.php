@@ -46,13 +46,29 @@
                         <td>
                             <form action="{{route('roles.destroy', $role->id)}}" class="formDelete" method="POST">
                                 @can('editar-rol')
+<<<<<<< Updated upstream
                                 <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}"><i class="fas fa-pen"></i></a>
+=======
+<<<<<<< Updated upstream
+                                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
+=======
+                                <a class="btn btn-info rounded-circle" href="{{ route('roles.edit',$role->id) }}"><i class="fas fa-pen"></i></a>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
                                 @can('borrar-rol')
+<<<<<<< Updated upstream
                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+=======
+<<<<<<< Updated upstream
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+=======
+                                <button type="submit" class="btn btn-danger rounded-circle"><i class="fas fa-trash"></i></button>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                                 @endcan
                             </form>
                         </td>
