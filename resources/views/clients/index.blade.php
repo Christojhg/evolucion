@@ -17,16 +17,16 @@
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
             @can('crear-cliente')
-            <a class="btn btn-primary rounded-circle" href="{{route('clients.create')}}">N</a>
+            <a class="btn btn-primary" href="{{route('clients.create')}}"><i class="fas fa-plus"></i></a>
             @endcan
         </div>
         <div class="col-8 d-flex p-2 m-auto">
             <input type="hidden" class="form-control mx-2 w-50">
         </div>
         <div class="col-2 m-auto">
-            <button class="btn btn-success mx-2"> Excel</button>
-            <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
+            <button class="btn btn-success mx-2"><i class="fas fa-file-excel"></i></button>
+            <button class="btn btn-danger mx-2"><i class="fas fa-file-pdf"></i></button>
+            <button class="btn btn-primary mx-2"><i class="fas fa-print"></i></button>
         </div>
     </div>
     <div class="row">
@@ -53,14 +53,14 @@
                         <td>
                             <form action="{{route('clients.destroy', $client->id)}}" class="formDelete text-center" method="POST">
                                 @can('editar-cliente')
-                                <a class="btn btn-info" href="{{ route('clients.edit',$client->id) }}">Editar</a>
+                                <a class="btn btn-info" href="{{ route('clients.edit',$client->id) }}"><i class="fas fa-edit"></i></a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
 
                                 @can('borrar-cliente')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger rounded"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>

@@ -12,7 +12,7 @@
     </div>
     <div class="row p-2 d-flex mb-3">
         <div class="col-1 m-auto">
-            <a href="#" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#modalCreate">N</a>
+            <a href="#" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#modalCreate"><i class="fas fa-plus"></i></a>
         </div>
         <div class="col-8 d-flex p-2 m-auto">
             <input type="hidden" class="form-control mx-2 w-50">

@@ -2,7 +2,8 @@
     color: #fff;
 }
 .bg-c-blue {
-    background: linear-gradient(45deg,#73b4ff, #4099ff);
+    /* background: linear-gradient(45deg,#73b4ff, #4099ff); */
+    background: #4099ff;
 }
 .bg-c-green {
     background: linear-gradient(45deg,#59e0c5, #2ed8b6);
@@ -32,16 +33,35 @@
 }
 
 .btn-exportar-excel {
-    background-color: #198754 !important;
+    background: #2AA745 !important;
+    border-radius: 5px !important;
+    border: none !important;
+    color: white !important;
+}
+.btn-exportar-excel:hover{
+    background: #1c7430 !important;
     color: white !important;
 }
 
 .btn-exportar-pdf {
-    background-color: #dc3545 !important;
+    background: #D84352 !important;
+    border-radius: 5px !important;
+    border: none !important;
+    color: white !important;
+}
+.btn-exportar-pdf:hover {
+    background: #a62633 !important;
     color: white !important;
 }
 
 .btn-exportar-print {
-    background-color: #00a7c9 !important;
+    background-color: #1a7bff !important;
+    border-radius: 5px !important;
+    border: none !important;
+    color: white !important;
+}
+
+.btn-exportar-print:hover {
+    background-color: #1e59ab !important;
     color: white !important;
 }

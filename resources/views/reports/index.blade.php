@@ -7,21 +7,20 @@
 @stop
 
 @section('content')
-<div class="container">
-    <div class="">
-        <div class="">
-            <br>
-            <div class="card">
-                <div class="card-header">
-                    <h1>Reporte Ventas</h1>
-                </div>
-
-                <div class="card-body">
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>Reporte Ventas</h1>
+            <hr class="bg-dark w100">
+        </div>
+    </div>
+    <div class="row p-2 d-flex mb-3">
+        <div class="card-body">
                     <div class="row">
                         <div class="col-sm">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+                                    <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                                 <input type="text" class="form-control" id="start_date" placeholder="Fecha inicio" readonly>
                             </div>
@@ -29,14 +28,14 @@
                         <div class="col-sm">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+                                    <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                                 <input type="text" class="form-control" id="end_date" placeholder="Fecha final" readonly>
                             </div>
                         </div>
                         <div class="col-sm">
                             <button id="filter" class="btn btn-success">Filtrar</button>
-                            <button id="reset" class="btn btn-warning">Reiniciar</button>
+                            <button id="reset" class="btn btn-danger">Reiniciar</button>
                         </div>
                     </div>
 
@@ -153,7 +152,7 @@
                 dom: 'Bfrtip',
                 buttons: [{
                         extend: 'excelHtml5',
-                        text: 'Exportar Excel',
+                        text: 'Excel',
                         filename: 'Reporte Ventas',
                         title: '',
                         exportOptions: {
@@ -163,7 +162,7 @@
                     },
                     {
                         extend: 'pdfHtml5',
-                        text: 'Exportar PDF',
+                        text: 'PDF',
                         filename: 'Reporte Ventas',
                         title: 'Reporte de Ventas',
                         exportOptions: {
