@@ -23,11 +23,6 @@
         <div class="col-8 d-flex p-2 m-auto">
             <input type="hidden" class="form-control mx-2 w-50">
         </div>
-        <div class="col-2 m-auto">
-            <button class="btn btn-success mx-2"> Excel</button>
-            <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
-        </div>
     </div>
     <div class="row">
         <div class="col-12">
@@ -49,7 +44,7 @@
                         <td>{{$client->email}}</td>
                         <td>{{$client->address}}</td>
                         <td>{{$client->doc_id}}</td>
-                        <td>{{$client->phone}}</td>                        
+                        <td>{{$client->phone}}</td>
                         <td>
                             <form action="{{route('clients.destroy', $client->id)}}" class="formDelete text-center" method="POST">
                                 @can('editar-cliente')
@@ -79,14 +74,48 @@
 
 @section('js')
 <script>
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('#tableClients').DataTable({
             language: {
                 url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
             },
-            responsive: true
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'excelHtml5',
+                    text: 'Exportar Excel',
+                    filename: 'Reporte Clientes',
+                    title: '',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    className: 'btn-exportar-excel',
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: 'Exportar PDF',
+                    filename: 'Reporte Clientes',
+                    title: 'Reporte de Clientes',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    className: 'btn-exportar-pdf',
+                    customize: function(doc) {
+                        doc.content[1].margin = [100, 0, 100, 0]
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Reporte de Clientes',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    className: 'btn-exportar-print',
+                },
+                'pageLength'
+            ]
         });
-    } );
+    });
 </script>
 
 <script>
