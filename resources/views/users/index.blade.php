@@ -90,20 +90,20 @@
             buttons: [{
                     extend: 'excelHtml5',
                     text: 'Excel',
-                    filename: 'Reporte Clientes',
+                    filename: 'Reporte Usuarios',
                     title: '',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [1, 2, 3, 4, 5, 6]
                     },
                     className: 'btn-exportar-excel',
                 },
                 {
                     extend: 'pdfHtml5',
                     text: 'PDF',
-                    filename: 'Reporte Clientes',
-                    title: 'Reporte de Clientes',
+                    filename: 'Reporte Usuarios',
+                    title: 'Reporte de Usuarios',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [1, 2, 3, 4, 5, 6]
                     },
                     className: 'btn-exportar-pdf',
                     customize: function(doc) {
@@ -112,9 +112,9 @@
                 },
                 {
                     extend: 'print',
-                    title: 'Reporte de Clientes',
+                    title: 'Reporte de Usuarios',
                     exportOptions: {
-                        columns: [1, 2, 3, 4, 5]
+                        columns: [1, 2, 3, 4, 5, 6]
                     },
                     className: 'btn-exportar-print',
                 },
