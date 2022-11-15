@@ -45,6 +45,7 @@ class ClientStoreRequest extends FormRequest
             'doc_id.required' => 'El documento es requerido',
             'doc_id.numeric' => 'El documento debe ser un numero',
             'doc_id.unique' => 'El documento DNI ya existe',
+            'doc_ruc.unique' => 'El número RUC ya existe',
             'phone.required' => 'El telefono es requerido',
             'phone.numeric' => 'El telefono debe ser un numero'
         ];
