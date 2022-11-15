@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>BIenvenido este es el link de su comprobante. por favoir no compartir 2022</h2>
+    <h2>Bienvenido este es el link de su comprobante. por favor no compartir 2022</h2>
     <h2>{{$link_id}}</h2>
 </body>
 </html>

@@ -3,20 +3,24 @@
 @section('title', 'Boletas')
 
 @section('content')
-<div class="container">
-    <br>
-    <div class="card">
-        <div class="card-header">
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
             <h1>Boletas</h1>
+            <hr class="bg-dark w100">
         </div>
-        <div class="card-body">
+    </div>
+    <div class="row p-2 d-flex mb-3">
+        <div class="col m-auto d-flex justify-content-start">
             @can('crear-boleta')
-            <a href="{{route('voucher.create')}}" class="btn btn-success mb-3">Nuevo Boleta</a>
+            <a href="{{route('voucher.create')}}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i></a>
             @endcan
-
-
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableBoletas">
-                <thead style="background-color:#6777ef">
+                <thead style="background-color:#ffff">
                     <th>Id</th>
                     <th>Codigo</th>
                     <th>Cliente</th>

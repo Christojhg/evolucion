@@ -7,31 +7,36 @@
 @stop
 
 @section('content')
-<div class="container">
-    <br>
-    <div class="card">
-        <div class="card-header">
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
             <h1>Empresa</h1>
+            <hr class="bg-dark w100">
         </div>
-        <div class="card-body">
-
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
             @if($count > 0)
 
             @else
             @can('crear-empresa')
-            <a href="{{route('companies.create')}}" class="btn btn-success mb-3">Crear</a>
+            <div class="row p-2 d-flex mb-3">
+                <div class="col m-auto d-flex justify-content-start">
+                    <a href="{{route('companies.create')}}" class="btn btn-success mb-3"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
             @endcan
             @endif
-
             <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableCompany">
-                <thead style="background-color:#6777ef">
+                <thead style="background-color:#ffff">
                     <th hidden>ID</th>
-                    <th style="color:#fff;">Nombre</th>
-                    <th style="color:#fff;">RUC</th>
-                    <th style="color:#fff;">Email</th>
-                    <th style="color:#fff;">Ciudad</th>
-                    <th style="color:#fff;">Telefono</th>
-                    <th style="color:#fff;">Acción</th>
+                    <th style="">Nombre</th>
+                    <th style="">RUC</th>
+                    <th style="">Email</th>
+                    <th style="">Ciudad</th>
+                    <th style="">Telefono</th>
+                    <th style="">Acción</th>
                 </thead>
                 <tbody>
                     @foreach($company as $comp)
@@ -44,11 +49,11 @@
                         <td>{{$comp->phone}}</td>
                         <td>
                             @can('ver-empresa')
-                            <a href="{{route('companies.show', $comp->id)}}" class="btn btn-success">Ver</a>
+                            <a href="{{route('companies.show', $comp->id)}}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
                             @endcan
 
                             @can('editar-empresa')
-                            <a href="{{route('companies.edit', $comp->id)}}" class="btn btn-info">Editar</a>
+                            <a href="{{route('companies.edit', $comp->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                             @endcan
                         </td>
                     </tr>

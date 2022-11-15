@@ -14,8 +14,8 @@
             <hr class="bg-dark w100">
         </div>
     </div>
-    <div class="row p-2 d-flex mb-3 border justify-content-end">
-        <div class="col-1 m-auto border">
+    <div class="row p-2 d-flex mb-3">
+        <div class="col m-auto d-flex justify-content-start">
             @can('crear-cliente')
             <a class="btn btn-primary" href="{{route('clients.create')}}"><i class="fas fa-plus"></i></a>
             @endcan
@@ -52,7 +52,7 @@
                                 @method('DELETE')
 
                                 @can('borrar-cliente')
-                                <button type="submit" class="btn btn-danger rounded"><i class="fas fa-trash"></i></button>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>
@@ -80,7 +80,7 @@
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'excelHtml5',
-                    text: 'Exportar Excel',
+                    text: 'Excel',
                     filename: 'Reporte Clientes',
                     title: '',
                     exportOptions: {
@@ -90,7 +90,7 @@
                 },
                 {
                     extend: 'pdfHtml5',
-                    text: 'Exportar PDF',
+                    text: 'PDF',
                     filename: 'Reporte Clientes',
                     title: 'Reporte de Clientes',
                     exportOptions: {
