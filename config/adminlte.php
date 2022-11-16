@@ -350,6 +350,12 @@ return [
             'can' => 'ver-boleta'
         ],
         [
+            'text' => 'Notes',
+            'url'  => '/notes',
+            'icon' => 'fas fa-fw fa-receipt',
+            'can' => 'ver-nota'
+        ],
+        [
             'text' => 'Productos',
             'url'  => '/products',
             'icon' => 'fas fa-fw fa-store',

@@ -11,6 +11,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\NotesController;
 use App\Mail\BoletaMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -47,7 +48,11 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::resource('invoices', InvoiceController::class)->except('edit','update','destroy');
     Route::resource('voucher', VoucherController::class)->except('edit','update','destroy');
     Route::resource('reports', ReportController::class)->only('index');
-
+    Route::resource('notes',NotesController::class)->except('create','update','destroy');
+    
+    Route::get('/notes-select',[NotesController::class, 'select'])->name('select.notes');
+    Route::post('/notes-select/create',[NotesController::class, 'create'])->name('select.notes_create');
+    
     //Cambio de contraseña
     Route::post('changePassword',[PasswordController::class, 'changePassword'])->name('changePassword');
 
