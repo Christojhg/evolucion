@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\VoucherRequest;
 use Yajra\DataTables\DataTables;
 
+use App\Mail\VoucherMailable;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class VoucherController extends Controller
 {
@@ -192,4 +195,32 @@ class VoucherController extends Controller
     {
         //
     }
+
+
+    public function voucher_send(Request $request){
+        $voucher=Voucher::find($request->id);
+        if(isset($request->w)){
+            $generado = URL::signedRoute('voucher_generate',$request->id);
+            $url="https://api.whatsapp.com/send?phone=".$voucher->client->phone."&text=hola,%20le%20envio%20la%20boleta%20".$generado;
+            return redirect($url);
+        }else{
+            $correo = new VoucherMailable($request->id);
+            Mail::to($voucher->client->email)->send($correo);
+            return "Mensaje enviado";
+        }
+    }
+
+    public static function voucher_generate_static($id){
+        return URL::signedRoute(
+            'voucher_generate',$id
+        );
+    }
+
+    public function voucher_generate($id){
+        $voucher=Voucher::find($id);
+        $voucher_details=VoucherDetail::where('id_voucher',$id)->get();
+        $subtotal=0;
+        return view('vouchers.show_generate',compact('voucher','voucher_details','subtotal'));
+    }
 }
+

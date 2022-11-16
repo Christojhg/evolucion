@@ -62,7 +62,9 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     Route::post('precio_ajax_b', [VoucherController::class, 'precio_ajax_b'])->name('precio_ajax_b');
     
     Route::post('invoice_send',[InvoiceController::class, 'invoice_send'])->name('invoice_send');
+    Route::post('voucher_send',[VoucherController::class, 'voucher_send'])->name('voucher_send');
 });
 
 Route::get('/invoice_generate/{id}' , [InvoiceController::class, 'invoice_generate'])->name('invoice_generate')->middleware('signed');
+Route::get('/voucher_generate/{id}' , [VoucherController::class, 'voucher_generate'])->name('voucher_generate')->middleware('signed');
 

@@ -6,13 +6,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\VoucherController;
 
-class InvoiceMailable extends Mailable
+class VoucherMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject="Envio de Factura";
+    public $subject="Envio de Boleta";
 
     public $id;
 
@@ -33,7 +33,7 @@ class InvoiceMailable extends Mailable
      */
     public function build()
     {
-        $link_id=InvoiceController::invoice_generate_static($this->id);
-        return $this->view('email.invoice')->with('link_id',$link_id);
+        $link_id=VoucherController::voucher_generate_static($this->id);
+        return $this->view('email.voucher')->with('link_id',$link_id);
     }
 }

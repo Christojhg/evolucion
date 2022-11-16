@@ -8,6 +8,6 @@
 <body>
     <h2>Vista generada de vouchers</h2>
 
-    <h2>{{$invoice->id}}</h2>
+    <h2>{{$voucher->id}}</h2>
 </body>
 </html>
