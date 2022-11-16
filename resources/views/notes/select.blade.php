@@ -10,7 +10,7 @@
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col-12">
-            <h1>Selecionar Voucher</h1>
+            <h1>Seleccionar Comprobante</h1>
             <hr class="bg-dark w100">
         </div>
     </div>
@@ -41,7 +41,7 @@
                         <td>
                             <form action="{{route('select.notes_create')}}" class="formCreate text-center" method="POST">
                                 @csrf
-                                <input type="text" name="id" value="{{$voucher->id}}" style="display: none" >
+                                <input type="text" name="id" value="{{$voucher->id}}" style="display: none">
                                 <button type="submit" class="btn btn-danger">Seleccionar</button>
                             </form>
                         </td>
@@ -60,14 +60,24 @@
 
 @section('js')
 <script>
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('#tableClients').DataTable({
             language: {
                 url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
             },
-            responsive: true
+            responsive: true,
+            columnDefs: [{
+                targets: 4,
+                render: function(data) {
+                    if (data == 'No Enviado') {
+                        return `<span class="badge badge-dark">${data}</span>`;
+                    } else {
+                        return `<span class="badge badge-success">${data}</span>`;
+                    }
+                }
+            }]
         });
-    } );
+    });
 </script>
 
 @stop

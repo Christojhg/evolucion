@@ -87,7 +87,11 @@
                 {
                     targets: 4,
                     render: function(data) {
-                        return `<span class="badge badge-dark">${data}</span>`;
+                        if (data == 'No Enviado') {
+                            return `<span class="badge badge-dark">${data}</span>`;
+                        } else {
+                            return `<span class="badge badge-success">${data}</span>`;
+                        }
                     }
                 }
             ]
@@ -100,6 +104,15 @@
     Swal.fire(
         'Creada!',
         'Boleta creada',
+        'success'
+    )
+</script>
+@endif
+@if (session('enviado') == 'ok')
+<script>
+    Swal.fire(
+        'Enviada!',
+        'Boleta enviada',
         'success'
     )
 </script>

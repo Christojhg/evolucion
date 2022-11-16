@@ -11,15 +11,16 @@
         </div>
         <div class="card-body">
 
+            @can('crear-nota')
             <a href="{{route('select.notes')}}" class="btn btn-success mb-3">Nuevo Nota</a>
-
+            @endcan
 
             <table class="table table-striped mt-2 nowrap" style="width:100%;" id="tableNotas">
                 <thead style="background-color:#6777ef">
                     <th>Id</th>
                     <th>Codigo</th>
+                    <th>Ref. Comprobante</th>
                     <th>Cliente</th>
-                    <th>Estado</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
                 </thead>
@@ -51,20 +52,20 @@
                     name: 'id'
                 },
                 {
-                    data: 'id_voucher',
-                    name: 'id_voucher'
-                },
-                {
-                    data: 'id_voucher_type',
-                    name: 'id_voucher_type'
-                },
-                {
                     data: 'notes_serie',
                     name: 'notes_serie'
                 },
                 {
-                    data: 'notes_number',
-                    name: 'notes_number' 
+                    data: 'voucher.voucher_serie',
+                    name: 'voucher.voucher_serie'
+                },
+                {
+                    data: 'voucher.client.name',
+                    name: 'voucher.client.name'
+                },
+                {
+                    data: 'notes_date',
+                    name: 'notes_date' 
                 },
                 {
                     data: 'acciones',
@@ -78,12 +79,6 @@
             columnDefs: [{
                     targets: 0,
                     visible: false
-                },
-                {
-                    targets: 4,
-                    render: function(data) {
-                        return `<span class="badge badge-dark">${data}</span>`;
-                    }
                 }
             ]
         });
@@ -94,7 +89,7 @@
 <script>
     Swal.fire(
         'Creada!',
-        'Noya creada',
+        'Nota creada',
         'success'
     )
 </script>

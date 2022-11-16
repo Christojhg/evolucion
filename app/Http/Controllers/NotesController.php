@@ -16,6 +16,13 @@ use Yajra\DataTables\DataTables;
 
 class NotesController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-nota|crear-nota|editar-nota|borrar-nota')->only('index','select');
+        $this->middleware('permission:crear-nota', ['only' => ['create','store']]);
+        $this->middleware('permission:editar-nota', ['only' => ['edit','update']]);
+        $this->middleware('permission:borrar-nota', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,7 @@ class NotesController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $notes = Note::with('voucher_status')->get();
+            $notes = Note::with('voucher_status')->with('voucher.client')->get();
 
             return DataTables::of($notes)
                 ->addColumn('acciones', 'notes.actions')
@@ -74,12 +81,26 @@ class NotesController extends Controller
         $notes_count=Note::count();
 
         $voucher_details=VoucherDetail::where('id_voucher',$voucher->id)->get();
+
+        $ultimaEntrada = $notes_count;
+
+        if (isset($ultimaEntrada)) {
+            $numero = $ultimaEntrada;
+            $numero++;
+            $cantidad_registro = $numberFinal = str_pad($numero, 3, "0", STR_PAD_LEFT);
+            $codigo_guia = 'E' . $cantidad_registro;
+        } else {
+            $codigo_guia = "E001";
+            $numberFinal = "001";
+        }
+
+        $serie = $codigo_guia;
         
         $note=new Note();
         $note->id_voucher=$voucher->id;
         $note->id_voucher_type=$voucher->id_voucher_type;
-        $note->notes_serie='E001';
-        $note->notes_number=$notes_count+1;
+        $note->notes_serie= $serie;
+        $note->notes_number=$numberFinal;
         $note->notes_date=Carbon::now();
         $note->id_voucher_status=$voucher->id_voucher_status;
         $note->id_currency=$voucher->id_currency;

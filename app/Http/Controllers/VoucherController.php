@@ -202,11 +202,13 @@ class VoucherController extends Controller
         if(isset($request->w)){
             $generado = URL::signedRoute('voucher_generate',$request->id);
             $url="https://api.whatsapp.com/send?phone=".$voucher->client->phone."&text=hola,%20le%20envio%20la%20boleta%20".$generado;
+            $voucher->update(['id_voucher_status' => '1']);
             return redirect($url);
         }else{
             $correo = new VoucherMailable($request->id);
             Mail::to($voucher->client->email)->send($correo);
-            return "Mensaje enviado";
+            $voucher->update(['id_voucher_status' => '1']);
+            return redirect()->route('voucher.index')->with('enviado', 'ok');
         }
     }
 

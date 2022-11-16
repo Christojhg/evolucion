@@ -196,11 +196,13 @@ class InvoiceController extends Controller
         if(isset($request->w)){
             $generado = URL::signedRoute('invoice_generate',$request->id);
             $url="https://api.whatsapp.com/send?phone=".$invoice->client->phone."&text=hola,%20le%20envio%20el%20comprobante%20".$generado;
+            $invoice->update(['id_voucher_status' => '1']);
             return redirect($url);
         }else{
             $correo = new InvoiceMailable($request->id);
             Mail::to($invoice->client->email)->send($correo);
-            return "Mensaje enviado";
+            $invoice->update(['id_voucher_status' => '1']);
+            return redirect()->route('invoices.index')->with('enviado', 'ok');
         }
     }
 
