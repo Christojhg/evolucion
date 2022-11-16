@@ -13,8 +13,6 @@
         <br>
             <div class="card">
             <div class="card-header"><h2>Crear nueva factura<h2></div>
-
-
                 <div class="card-body">
                     @if ($errors->any())
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">
@@ -105,11 +103,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="button" class='delete btn btn-danger'>Eliminar</button>
-                            <button type="button" class='addmore btn btn-success'>Agregar</button>
-                            <button class="btn btn-primary float-right" type="submit" id="boton" name="boton"><i class="fa fa-cloud-upload" aria-hidden="true">Guardar</i></button>
+                            <button type="button" class='delete btn btn-danger'><i class="fas fa-trash"></i></button>
+                            <button type="button" class='addmore btn btn-success'><i class="fas fa-plus"></i> Agregar</button>
+                            <button class="btn btn-primary float-right" type="submit" id="boton" name="boton"><i class="fas fa-save"></i> Guardar</button>
                         </div>
-
                     </form>
                 </div>
             </div>

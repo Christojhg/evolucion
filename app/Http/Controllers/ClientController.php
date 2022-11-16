@@ -85,6 +85,7 @@ class ClientController extends Controller
      */
     public function update(ClientUpdateRequest $request, Client $client)
     {
+        
         $client->update($request->all());
 
         return redirect()->route('clients.index');

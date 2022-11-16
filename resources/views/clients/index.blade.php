@@ -15,18 +15,10 @@
         </div>
     </div>
     <div class="row p-2 d-flex mb-3">
-        <div class="col-1 m-auto">
+        <div class="col m-auto d-flex justify-content-start">
             @can('crear-cliente')
-            <a class="btn btn-primary rounded-circle" href="{{route('clients.create')}}">N</a>
+            <a class="btn btn-primary" href="{{route('clients.create')}}"><i class="fas fa-plus"></i></a>
             @endcan
-        </div>
-        <div class="col-8 d-flex p-2 m-auto">
-            <input type="hidden" class="form-control mx-2 w-50">
-        </div>
-        <div class="col-2 m-auto">
-            <button class="btn btn-success mx-2"> Excel</button>
-            <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
         </div>
     </div>
     <div class="row">
@@ -49,18 +41,18 @@
                         <td>{{$client->email}}</td>
                         <td>{{$client->address}}</td>
                         <td>{{$client->doc_id}}</td>
-                        <td>{{$client->phone}}</td>                        
+                        <td>{{$client->phone}}</td>
                         <td>
                             <form action="{{route('clients.destroy', $client->id)}}" class="formDelete text-center" method="POST">
                                 @can('editar-cliente')
-                                <a class="btn btn-info" href="{{ route('clients.edit',$client->id) }}">Editar</a>
+                                <a class="btn btn-info" href="{{ route('clients.edit',$client->id) }}"><i class="fas fa-edit"></i></a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
 
                                 @can('borrar-cliente')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>
@@ -79,14 +71,48 @@
 
 @section('js')
 <script>
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('#tableClients').DataTable({
             language: {
                 url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
             },
-            responsive: true
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    filename: 'Reporte Clientes',
+                    title: '',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    className: 'btn-exportar-excel',
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: 'PDF',
+                    filename: 'Reporte Clientes',
+                    title: 'Reporte de Clientes',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    className: 'btn-exportar-pdf',
+                    customize: function(doc) {
+                        doc.content[1].margin = [100, 0, 100, 0]
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Reporte de Clientes',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    className: 'btn-exportar-print',
+                },
+                'pageLength'
+            ]
         });
-    } );
+    });
 </script>
 
 <script>

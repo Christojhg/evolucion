@@ -7,26 +7,30 @@
 @stop
 
 @section('content')
-<div class="container">
-    <br>
-    <div class="card">
-        <div class="card-header">
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
             <h1>Facturas</h1>
+            <hr class="bg-dark w100">
         </div>
-        <div class="card-body">
-
+    </div>
+    <div class="row p-2 d-flex mb-3">
+        <div class="col m-auto d-flex  justify-content-start">
             @can('crear-factura')
-            <a class="btn btn-success mb-3" href="{{ route('invoices.create') }}">Nueva Factura</a>
+            <a class="btn btn-primary mb-3" href="{{ route('invoices.create') }}"><i class="fas fa-plus"></i></a>
             @endcan
-
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <table class="table table-striped mt-2 nowrap" style="width: 100%;" id="tableInvoices">
-                <thead style="background-color:#6777ef">
-                    <th style="color:#fff;">Id</th>
-                    <th style="color:#fff;">Código</th>
-                    <th style="color:#fff;">Cliente</th>
-                    <th style="color:#fff;">Fecha</th>
-                    <th style="color:#fff;">Estado</th>
-                    <th style="color:#fff;">Acciones</th>
+                <thead style="background-color:#ffff">
+                    <th style="">Id</th>
+                    <th style="">Código</th>
+                    <th style="">Cliente</th>
+                    <th style="">Fecha</th>
+                    <th style="">Estado</th>
+                    <th style="">Acciones</th>
                 </thead>
                 <tbody>
 

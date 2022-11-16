@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\RucValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ClientStoreRequest extends FormRequest
@@ -28,7 +29,7 @@ class ClientStoreRequest extends FormRequest
             'email' => 'required|unique:clients,email',
             'address' => 'required',
             'doc_id' => 'required|numeric|unique:clients,doc_id',
-            'doc_ruc' => 'nullable|numeric|unique:clients,doc_ruc',
+            'doc_ruc' => ['nullable', 'numeric', 'unique:clients,doc_ruc', new RucValidation],
             'phone' => 'required|numeric'
         ];
     }
@@ -44,6 +45,7 @@ class ClientStoreRequest extends FormRequest
             'doc_id.required' => 'El documento es requerido',
             'doc_id.numeric' => 'El documento debe ser un numero',
             'doc_id.unique' => 'El documento DNI ya existe',
+            'doc_ruc.unique' => 'El número RUC ya existe',
             'phone.required' => 'El telefono es requerido',
             'phone.numeric' => 'El telefono debe ser un numero'
         ];

@@ -11,16 +11,8 @@
         </div>
     </div>
     <div class="row p-2 d-flex mb-3">
-        <div class="col-1 m-auto">
-            <a href="#" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#modalCreate">N</a>
-        </div>
-        <div class="col-8 d-flex p-2 m-auto">
-            <input type="hidden" class="form-control mx-2 w-50">
-        </div>
-        <div class="col-2 m-auto">
-            <button class="btn btn-success mx-2"> Excel</button>
-            <button class="btn btn-danger mx-2">PDF</button>
-            <button class="btn btn-primary rounded-circle mx-2">P</button>
+        <div class="col m-auto d-flex justify-content-start">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="fas fa-plus"></i></a>
         </div>
     </div>
 
@@ -47,13 +39,13 @@
                         <td>
                             <form action="{{route('products.destroy', $product->id)}}" class="formDelete" method="POST">
                                 @can('editar-producto')
-                                <a href="#" data-toggle="modal" data-target="#modalEdit{{$product->id}}" class="btn btn-info rounded-circle">E</a>
+                                <a href="#" data-toggle="modal" data-target="#modalEdit{{$product->id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                                 @endcan
 
                                 @csrf
                                 @method('DELETE')
                                 @can('borrar-producto')
-                                <button type="submit" class="btn btn-danger rounded-circle">D</button>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                 @endcan
                             </form>
                         </td>
@@ -81,7 +73,41 @@
             language: {
                 url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
             },
-            responsive: true
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'excelHtml5',
+                    text: 'Exportar Excel',
+                    filename: 'Reporte Productos',
+                    title: '',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4]
+                    },
+                    className: 'btn-exportar-excel',
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: 'Exportar PDF',
+                    filename: 'Reporte Productos',
+                    title: 'Reporte de Productos',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4]
+                    },
+                    className: 'btn-exportar-pdf',
+                    customize: function(doc) {
+                        doc.content[1].margin = [100, 0, 100, 0]
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Reporte de Productos',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4]
+                    },
+                    className: 'btn-exportar-print',
+                },
+                'pageLength'
+            ]
         });
     } );
 </script>

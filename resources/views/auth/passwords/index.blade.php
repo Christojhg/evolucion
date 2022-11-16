@@ -55,7 +55,9 @@
                             <input type="password" name="newPassword_confirmation" class="form-control" id="newPassword_confirmation" placeholder="Confirmar Contraseña">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info">Cambiar</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Cambiar</button>
                 </div>
             </form>
         </div>

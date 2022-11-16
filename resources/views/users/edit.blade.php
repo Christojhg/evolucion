@@ -64,8 +64,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-info">Guardar</button>
-                            <a class="btn btn-success" href="{{route('users.index')}}">Regresar</a>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <a class="btn btn-danger" href="{{route('users.index')}}">Regresar</a>
+                            </div>
                         </form>
                     </div>
                 </div>

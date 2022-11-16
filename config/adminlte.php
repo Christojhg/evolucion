@@ -65,12 +65,12 @@ return [
 
     
 
-    'logo' => '<b>Sistema FPYME</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Sistema PYME</b>',
+    'logo_img' => '/logo_empresa/logob.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'logo_ico_b',
 
     /*
     |--------------------------------------------------------------------------
@@ -88,7 +88,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '/logo_empresa/logob.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
