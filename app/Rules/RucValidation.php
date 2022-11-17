@@ -44,6 +44,8 @@ class RucValidation implements Rule
             } else if ($response["error"] == 'RUC invalido' or $response["error"] == 'Descripción del error en el formato de ruc') {
                 return false;
             }
+        }else{
+            return false;
         }
     }
 
