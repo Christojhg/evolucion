@@ -8,7 +8,7 @@
 <br>
 <div class="card">
     <div class="card-header">
-        <a href="{{route('notes.index')}}"><button type="button" class="btn btn-primary mb-3">Atras</button></a>
+        <a href="{{route('notes.index')}}"><button type="button" class="btn btn-primary mb-3"><i class="fas fa-chevron-left"></i> Atras</button></a>
         <h3 class="card-title"></h3>
     </div>
     <!-- /.card-header -->
@@ -147,16 +147,16 @@
                     @csrf
                     <input type="text" value="1" name="w" style="display: none">
                     <input type="text" value="{{$note->id}}" name="id" style="display: none">
-                    <button type="submit" class="btn btn-primary float-right" style="margin-right: 5px;">
-                      Enviar Por WhatsApp
+                    <button type="submit" class="btn btn-success float-right mx-2" style="margin-right: 5px;">
+                      Enviar <i class="fab fa-whatsapp"></i>
                     </button>
                   </form>
                   
                   <form action="{{route('invoice_send')}}"  enctype="multipart/form-data" method="post"  id="form_store_correo">
                     @csrf
                     <input type="text" value="{{$note->id}}" name="id" style="display: none">
-                    <button type="submit" class="btn btn-success float-right">
-                      Enviar a correo
+                    <button type="submit" class="btn btn-primary float-right">
+                      Enviar <i class="fas fa-envelope"></i>
                     </button></a>
                   </form>
                   

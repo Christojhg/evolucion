@@ -96,7 +96,7 @@
                             </table>
                             <!--<button type="button" class='delete btn btn-danger'>Eliminar</button>-->
                             <!--<button type="button" class='addmore btn btn-success'>Agregar</button>-->
-                            <button class="btn btn-primary float-right" type="submit" id="boton" name="boton"><i class="fa fa-cloud-upload" aria-hidden="true">Guardar</i></button>
+                            <button class="btn btn-primary float-right" type="submit" id="boton" name="boton"><i class="fas fa-save"></i> Guardar</button>
                         </div>
 
                     </form>

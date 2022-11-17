@@ -8,7 +8,7 @@
 <br>
 <div class="card">
     <div class="card-header">
-        <a href="{{route('voucher.index')}}"><button type="button" class="btn btn-primary mb-3">Atras</button></a>
+        <a href="{{route('voucher.index')}}"><button type="button" class="btn btn-primary mb-3"><i class="fas fa-chevron-left"></i> Atras</button></a>
         <h3 class="card-title"></h3>
     </div>
     <!-- /.card-header -->

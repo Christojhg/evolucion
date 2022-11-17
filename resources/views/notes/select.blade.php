@@ -15,8 +15,8 @@
         </div>
     </div>
     <div class="row p-2 d-flex mb-3">
-        <div class="col-1 m-auto">
-            <a class="btn btn-primary rounded-circle" href="{{route('notes.index')}}">Atras</a>
+        <div class="col m-auto d-flex justify-content-start">
+            <a class="btn btn-primary" href="{{route('notes.index')}}"><i class="fas fa-chevron-left"></i> Atras</a>
         </div>
     </div>
     <div class="row">
@@ -42,7 +42,7 @@
                             <form action="{{route('select.notes_create')}}" class="formCreate text-center" method="POST">
                                 @csrf
                                 <input type="text" name="id" value="{{$voucher->id}}" style="display: none">
-                                <button type="submit" class="btn btn-danger">Seleccionar</button>
+                                <button type="submit" class="btn btn-success"><i class="fas fa-clipboard-check"></i></button>
                             </form>
                         </td>
                     </tr>
