@@ -142,16 +142,16 @@
 
                     <input type="text" value="1" name="w" style="display: none">
                     <input type="text" value="{{$voucher->id}}" name="id" style="display: none">
-                    <button type="submit" class="btn btn-primary float-right" style="margin-right: 5px;">
-                      Enviar Por WhatsApp
+                    <button type="submit" class="btn btn-success float-right" style="margin-right: 5px;">
+                      Enviar <i class="fab fa-whatsapp"></i>
                     </button>
                   </form>
                   
                   <form action="{{route('voucher_send')}}"  enctype="multipart/form-data" method="post"  id="form_store">
                     @csrf
                     <input type="text" value="{{$voucher->id}}" name="id" style="display: none">
-                    <button type="submit" class="btn btn-success float-right">
-                      Enviar a correo
+                    <button type="submit" class="btn btn-primary float-right">
+                      Enviar <i class="fa fa-envelope"></i>
                     </button></a>
                   </form>
                   

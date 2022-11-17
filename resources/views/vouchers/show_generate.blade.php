@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 </head>
 
 <body>
@@ -19,10 +21,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="callout callout-info">
-                                <h5><i class="fas fa-info"></i> Nota:</h5>
-                                Esta pagina es solo una vista previa de la Factura. Si desea imprimir haga click en el boton imprimir que esta al final de la vista.
-                            </div>
+                            
 
 
                             <!-- Main content -->
@@ -120,13 +119,10 @@
                                                     <th style="width:50%">Subtotal :</th>
                                                     <td>{{$voucher->currency->gloss}} {{$subtotal}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th style="width:50%">IGV 18% :</th>
-                                                    <td>{{$voucher->currency->gloss}} {{$subtotal * 0.18}}</td>
-                                                </tr>
+                                            
                                                 <tr>
                                                     <th>Total:</th>
-                                                    <td>{{$voucher->currency->gloss}} {{$subtotal + $subtotal * 0.18}}</td>
+                                                    <td>{{$voucher->currency->gloss}} {{$subtotal }}</td>
                                                 </tr>
                                             </table>
                                         </div>
