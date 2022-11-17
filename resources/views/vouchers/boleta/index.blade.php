@@ -24,8 +24,8 @@
                     <th>Id</th>
                     <th>Codigo</th>
                     <th>Cliente</th>
-                    <th>Estado</th>
                     <th>Fecha</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </thead>
                 <tbody>
