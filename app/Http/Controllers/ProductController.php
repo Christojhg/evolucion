@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
@@ -41,7 +42,7 @@ class ProductController extends Controller
         return view('products.modals.editModal', compact('product'));
     }
 
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
         $product->update($request->all());
         

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class ProductUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'cod_prod' => ['required', 'unique:products,cod_prod'],
-            'name' => ['required', 'unique:products,name'],
+            'cod_prod' => ['required', 'unique:products,cod_prod,'.$this->product->id],
+            'name' => ['required', 'unique:products,name,'.$this->product->id],
             'description' => 'required',
             'price' => ['required', 'numeric', 'min:0.5', 'max:100']
         ];
@@ -40,20 +40,7 @@ class ProductRequest extends FormRequest
             'description.required' => 'La descripción es requerida',
             'price.required' => 'El precio es requerido',
             'price.min' => 'El precio debe estar comprendido entre 0.5 y 100',
-            'price.max' => 'El precio debe estar comprendido entre 0.5 y 100',
-            'name.unique' => 'El nombre del producto ya existe',
-            'cod_prod.unique' => 'El código del producto ya existe'
+            'price.max' => 'El precio debe estar comprendido entre 0.5 y 100'
         ];
-    }
-
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            if ($validator->errors()->count()) {
-                if (!in_array($this->method(), ['PUT', 'PATCH'])) {
-                    $validator->errors()->add('post', true);
-                }
-            }
-        });
     }
 }
