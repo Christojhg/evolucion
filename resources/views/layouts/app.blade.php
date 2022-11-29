@@ -13,12 +13,15 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    {{-- css --}}
+    @vite(['resources/css/app.css'])
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
@@ -70,9 +73,9 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>---}}
 
-        <main class="py-4">
+        <main class="content-fluid vh-100 d-flex m-auto justify-content-center align-content-center bg-general">
             @yield('content')
         </main>
     </div>
