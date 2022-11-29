@@ -1,5 +1,6 @@
 .bg-general{
-    background: linear-gradient(rgba(2, 2, 2, 0.1),rgba(252, 252, 253, 0.2)) ,url("https://png.pngtree.com/background/20210711/original/pngtree-blue-geometric-business-tech-business-card-background-picture-image_1097031.jpg") !important;
+    background: linear-gradient(rgba(252, 252, 253, 0.125),rgba(2, 2, 2, 0.150)) ,url("https://png.pngtree.com/background/20210711/original/pngtree-blue-geometric-business-tech-business-card-background-picture-image_1097031.jpg") !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
+    background-position: center ;
 }
