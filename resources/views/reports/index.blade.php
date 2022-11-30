@@ -16,49 +16,64 @@
     </div>
     <div class="row p-2 d-flex mb-3">
         <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
-                                </div>
-                                <input type="text" class="form-control" id="start_date" placeholder="Fecha inicio" readonly>
-                            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
                         </div>
-                        <div class="col-sm">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
-                                </div>
-                                <input type="text" class="form-control" id="end_date" placeholder="Fecha final" readonly>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <button id="filter" class="btn btn-success">Filtrar</button>
-                            <button id="reset" class="btn btn-danger">Reiniciar</button>
-                        </div>
+                        <input type="text" class="form-control" id="start_date" placeholder="Fecha inicio" readonly>
                     </div>
-
-                    <table class="table table-light mt-2 nowrap" style="width: 100%;" id="reportTable">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Id</th>
-                                <th>Codigo</th>
-                                <th>Comprobante</th>
-                                <th>Cliente</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                                <th>Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
+                </div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="end_date" placeholder="Fecha final" readonly>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <button id="filter" class="btn btn-success">Filtrar</button>
+                    <button id="reset" class="btn btn-danger">Reiniciar</button>
                 </div>
             </div>
+
+            <table class="table table-light mt-2 nowrap" style="width: 100%;" id="reportTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>Codigo</th>
+                        <th>Comprobante</th>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Subtotal</th>
+                        <th>Impuesto</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align:right">Total:</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
+</div>
+</div>
 </div>
 @stop
 
@@ -77,8 +92,37 @@
             "dateFormat": "yy-mm-dd"
         });
 
+        var user = "{{$creador}}"
+
         function cargar_datos(start_date = '', end_date = '') {
             $('#reportTable').DataTable({
+                footerCallback: function(row, data, start, end, display) {
+                    var api = this.api(),
+                        data;
+
+                    var intVal = function(i) {
+                        return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+                    };
+
+                    total = api
+                        .column(8)
+                        .data()
+                        .reduce(function(a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    pageTotal = api
+                        .column(8, {
+                            page: 'current'
+                        })
+                        .data()
+                        .reduce(function(a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+
+                    $(api.column(8).footer()).html('' + pageTotal + ' ( ' + total + ' total)');
+                },
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -115,9 +159,17 @@
                         name: 'status_name'
                     },
                     {
-                        data: 'monto',
-                        name: 'monto'
+                        data: 'subtotal',
+                        name: 'subtotal'
                     },
+                    {
+                        data: 'igv',
+                        name: 'igv'
+                    },
+                    {
+                        data: 'total',
+                        name: 'total'
+                    }
                 ],
                 language: {
                     url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
@@ -136,48 +188,39 @@
                                 return `<span class="badge badge-success">${data}</span>`;
                             }
                         }
-                    },
-                    {
-                        targets: 6,
-                        render: function(data, type, row, meta) {
-                            if (row.type_name == 'Factura') {
-                                monto_igv = parseFloat(row.monto) + parseFloat(row.monto * 0.18)
-                                return row.monto = monto_igv
-                            } else if (row.type_name == 'Boleta') {
-                                return row.monto
-                            }
-                        }
                     }
                 ],
                 dom: 'Bfrtip',
                 buttons: [{
                         extend: 'excelHtml5',
                         text: 'Excel',
+                        footer: true,
                         filename: 'Reporte Ventas',
-                        title: '',
+                        title: 'Reporte de Ventas ' + $("#start_date").val() + ' - ' + $("#end_date").val() + ' creado por ' + user,
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5, 6]
+                            columns: [1, 2, 3, 4, 5, 6, 7, 8]
                         },
                         className: 'btn-exportar-excel',
                     },
                     {
                         extend: 'pdfHtml5',
                         text: 'PDF',
+                        footer: true,
                         filename: 'Reporte Ventas',
-                        title: 'Reporte de Ventas',
+                        title: 'Reporte de Ventas ' + $("#start_date").val() + ' - ' + $("#end_date").val() + ' creado por ' + user,
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5, 6]
+                            columns: [1, 2, 3, 4, 5, 6, 7, 8]
                         },
                         className: 'btn-exportar-pdf',
                         customize: function(doc) {
-                            doc.content[1].margin = [100, 0, 100, 0]
+                            doc.content[1].margin = [100, 0, 200, 0]
                         }
                     },
                     {
                         extend: 'print',
                         title: 'Reporte de Ventas',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5, 6]
+                            columns: [1, 2, 3, 4, 5, 6, 7, 8]
                         },
                         className: 'btn-exportar-print',
                     },

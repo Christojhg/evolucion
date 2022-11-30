@@ -18,7 +18,9 @@ return new class extends Migration
                 CREATE PROCEDURE `sp_masvendido`()
                 BEGIN
                     select p.name, SUM(v.quantity) as cantidad from 
-                    voucher_detail v inner join products p on v.id_prod = p.id 
+                    voucher_detail v inner join products p on v.id_prod = p.id
+                    inner join voucher vo on vo.id = v.id_voucher
+                    where not vo.id_voucher_status = '3' 
                     GROUP BY p.name 
                     ORDER BY cantidad DESC limit 5;
                 END;";

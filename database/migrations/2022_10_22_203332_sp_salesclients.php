@@ -18,7 +18,8 @@ return new class extends Migration
                 CREATE PROCEDURE `sp_salesclients`()
                 BEGIN
                     select c.name, SUM(d.quantity * d.price) as ventas from 
-                    voucher_detail d inner join voucher v on d.id_voucher = v.id inner join clients c on c.id = v.id_client 
+                    voucher_detail d inner join voucher v on d.id_voucher = v.id inner join clients c on c.id = v.id_client
+                    where not v.id_voucher_status = '3' 
                     GROUP by c.name 
                     ORDER BY ventas 
                     DESC limit 3;

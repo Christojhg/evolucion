@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(VoucherTypeSeeder::class);
         $this->call(SeederTablePermissionsReports::class);
         $this->call(SeederTablePermissionsNotes::class);
+        $this->call(VoucherStatusDevSeeder::class);
     }
 }

@@ -50,7 +50,7 @@ class NotesController extends Controller
 
     public function select()
     {
-        $vouchers=Voucher::all();
+        $vouchers=Voucher::whereNot('id_voucher_status','3')->get();
         return view('notes.select',compact('vouchers'));
     }
 
@@ -116,7 +116,7 @@ class NotesController extends Controller
             $note_detail->save();
         }
 
-        
+        $voucher->update(['id_voucher_status' => '3']);
         
         return redirect()->route('notes.index')->with('success', 'ok') ;
         

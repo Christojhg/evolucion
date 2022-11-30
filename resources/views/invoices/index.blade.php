@@ -92,8 +92,10 @@
                     render: function(data) {
                         if (data == 'No Enviado') {
                             return `<span class="badge badge-dark">${data}</span>`;
-                        } else {
+                        } else if (data == 'Enviado') {
                             return `<span class="badge badge-success">${data}</span>`;
+                        } else {
+                            return `<span class="badge badge-danger">${data}</span>`;
                         }
                     }
                 }

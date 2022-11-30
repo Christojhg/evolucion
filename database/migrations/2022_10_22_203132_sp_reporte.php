@@ -19,7 +19,9 @@ return new class extends Migration
                 BEGIN
                     select date(v.voucher_date) as day_v, sum(d.price * d.quantity) as sum_days 
                     from voucher v inner join voucher_detail d on v.id = d.id_voucher 
-                    where v.voucher_date > now() - INTERVAL 7 day group by day_v order by day_v;
+                    where v.voucher_date > now() - INTERVAL 7 day 
+                    and v.id_voucher_status not in ('3')
+                    group by day_v order by day_v;
                 END;";
 
         DB::unprepared($sp_reporte);
