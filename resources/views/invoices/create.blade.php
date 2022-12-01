@@ -25,6 +25,12 @@
                         </button>
                     </div>
                     @endif
+
+                    @if (is_null($company))
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <strong>Para crear una factura, primero debe de ingresar los datos de la empresa</strong>
+                    </div>
+                    @endif
                     <form action="{{route('invoices.store')}}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="form-group row">
@@ -105,7 +111,13 @@
                             </table>
                             <button type="button" class='delete btn btn-danger'><i class="fas fa-trash"></i></button>
                             <button type="button" class='addmore btn btn-success'><i class="fas fa-plus"></i> Agregar</button>
+
+                            @if (is_null($company))
+                            <button class="btn btn-primary float-right" type="submit" id="boton" name="boton" disabled><i class="fas fa-save"></i> Guardar</button>
+                            @else
                             <button class="btn btn-primary float-right" type="submit" id="boton" name="boton"><i class="fas fa-save"></i> Guardar</button>
+                            @endif
+
                         </div>
                     </form>
                 </div>

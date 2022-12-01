@@ -61,7 +61,9 @@ class VoucherController extends Controller
         $clients = Client::all();
         $products = Product::all();
         $currencies = Currency::pluck('name','id')->toArray();
-        return view('vouchers.boleta.create',compact('clients','products','currencies'));
+        $company = Company::first();
+
+        return view('vouchers.boleta.create',compact('clients','products','currencies', 'company'));
     }
 
     public function precio_ajax_b(Request $request)

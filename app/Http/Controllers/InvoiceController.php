@@ -57,8 +57,9 @@ class InvoiceController extends Controller
         $products = Product::all();
         $clients = Client::whereNotNull('doc_ruc')->get();
         $currencies = Currency::pluck('name', 'id')->toArray();
+        $company = Company::first();
 
-        return view('invoices.create', compact('products', 'clients', 'currencies'));
+        return view('invoices.create', compact('products', 'clients', 'currencies', 'company'));
     }
 
     public function precio_ajax_f(Request $request)

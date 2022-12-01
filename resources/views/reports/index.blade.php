@@ -104,12 +104,6 @@
                         return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
                     };
 
-                    total = api
-                        .column(8)
-                        .data()
-                        .reduce(function(a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
 
                     pageTotal = api
                         .column(8, {
@@ -121,7 +115,7 @@
                         }, 0);
 
 
-                    $(api.column(8).footer()).html('' + pageTotal + ' ( ' + total + ' total)');
+                    $(api.column(8).footer()).html('' + pageTotal );
                 },
                 processing: true,
                 serverSide: true,
