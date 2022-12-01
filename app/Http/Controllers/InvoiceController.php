@@ -107,9 +107,8 @@ class InvoiceController extends Controller
         //usuario
         $user = Auth::id();
         //cliente
-        $clientName = $request->client_name;
-        $name = strstr($clientName, ' | ', true);
-        $client_find = Client::where('id', $name)->first();
+        $clientName = $request->client_name;        
+        $client_find = Client::where('name', $clientName)->first();
 
         //Factura
         $voucher = new Voucher();
