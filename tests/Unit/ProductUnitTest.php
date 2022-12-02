@@ -28,6 +28,6 @@ class ProductUnitTest extends TestCase
             'price' => 50.00,
         ]);
 
-        $response->assertOk();
+        $response->assertStatus(302);
     }
 }

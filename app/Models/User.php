@@ -49,12 +49,18 @@ class User extends Authenticatable
     ];
 
     public static function userAdmin(){
-        $user = new User();
-        $user->name= 'Admin';
-        $user->email= 'adm@gmail.com';
-        $user->password=bcrypt('adm@gmail.com');
-        $user->save();
 
-        return $user;
+        $usuario=User::where('email','adm@gmail.com')->first();
+        if($usuario==null){
+            $user = new User();
+            $user->name= 'Admin';
+            $user->email= 'adm@gmail.com';
+            $user->password=bcrypt('adm@gmail.com');
+            $user->save();
+
+            return $user;
+        }
+
+        return $usuario;
     }
 }
