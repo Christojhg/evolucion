@@ -39,7 +39,7 @@
                                 <input list="clients" class="form-control " name="client_name" class=" form-control" required id='client_name' autocomplete="off">
                                 <datalist id="clients">
                                     @foreach($clients as $index => $client)
-                                    <option value="{{$client->id}} | {{$client->name}}">
+                                    <option value="{{$client->name}}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -149,7 +149,7 @@
                                             </datalist>             
             </td>
             <td>
-                <input type='number' id='cantidad${i}' name='cantidad[]' class="monto${i} form-control" onkeyup="multi(${i})" required  autocomplete="off" max=""/>
+                <input type='number' id='cantidad${i}' name='cantidad[]' class="monto${i} form-control" onkeyup="multi(${i})" required  autocomplete="off" min="1" max=""/>
             </td>
             <td>
                 <input type='text' id='precio${i}' name='precio[]' class="monto${i} form-control" onkeyup="multi(${i})" required  autocomplete="off"/>

@@ -25,7 +25,8 @@ class InvoiceRequest extends FormRequest
     {
         return [
             'product' => 'required|exists:products,name',
-            'cantidad' => 'required'
+            'cantidad' => 'required|min:1',
+            'client_name' => 'required|exists:clients,name',
         ];
     }
 
@@ -33,8 +34,11 @@ class InvoiceRequest extends FormRequest
     {
         return [
             'product.required' => 'Se necesita un producto como minimo',
+            'product.exists' => 'El producto no existe',
             'cantidad.required' => 'Se necesita una cantidad como minimo',
-            'exists' => 'El producto no existe, elija una correcto'
+            'client_name.exists' => 'El cliente no existe',
+            'client_name.required' => 'Se necesita agregar un cliente',
+            'cantidad.min' => 'La cantidad minima debe ser 1'
         ];
     }
 }
