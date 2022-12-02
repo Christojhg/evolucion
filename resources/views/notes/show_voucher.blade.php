@@ -65,7 +65,8 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <h2>Boleta : {{$note->notes_serie}}</h2><br>
+                  <h2>Nota de Crédito : {{$note->notes_serie}}</h2><br>
+                  <h3>Modifica a : {{$note->voucher->voucher_serie}}</h3>
                 </div>
                 <!-- /.col -->
               </div>

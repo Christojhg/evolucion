@@ -25,7 +25,7 @@
           <div class="col-12">
             <div class="callout callout-info">
               <h5><i class="fas fa-info"></i> Nota:</h5>
-              Esta pagina es solo una vista previa de la Factura. Si desea imprimir haga click en el boton imprimir que esta al final de la vista.
+              Esta pagina es solo una vista previa de la Nota. Si desea imprimir haga click en el boton imprimir que esta al final de la vista.
             </div>
 
 
@@ -66,7 +66,8 @@
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                   <h2> Ruc : {{$note->voucher->company->ruc}}    </h2><br>
-                <h2>Factura : {{$note->notes_serie}}</h2><br>
+                <h2>Nota de Crédito : {{$note->notes_serie}}</h2><br>
+                <h3>Modifica a : {{$note->voucher->voucher_serie}}</h3>
                 </div>
                 <!-- /.col -->
               </div>
