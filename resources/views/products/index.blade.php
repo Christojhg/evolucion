@@ -13,6 +13,7 @@
     <div class="row p-2 d-flex mb-3">
         <div class="col m-auto d-flex justify-content-start">
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="fas fa-plus"></i></a>
+            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalDeletes"><i class="fas fa-trash"></i></a>
         </div>
     </div>
 
@@ -59,6 +60,7 @@
 </div>
 
 @include('products.modals.createModal')
+@include('products.modals.deletesModal')
 @stop
 
 @section('css')
@@ -109,6 +111,13 @@
                 'pageLength'
             ]
         });
+
+        $('#tableDeletes').DataTable({
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            },
+            responsive: true
+        });
     } );
 </script>
 
@@ -137,7 +146,7 @@
         Swal.fire({
             title: 'Está seguro de eliminar?',
             icon: 'warning',
-            text: 'Se borrara permanentemente',
+            text: 'Se borrara pero podra ser restaurado luego',
             showCancelButton: true,
             confirmButtonColor: '#308d56',
             cancelButtonColor: '#d33',
@@ -166,6 +175,16 @@
     Swal.fire(
         'Agregado!',
         'El producto ha sido agregado',
+        'success'
+    )
+</script>
+@endif
+
+@if (session('restore') == 'ok')
+<script>
+    Swal.fire(
+        'Restaurado!',
+        'El producto ha sido restaurado',
         'success'
     )
 </script>

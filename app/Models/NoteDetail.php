@@ -14,6 +14,6 @@ class NoteDetail extends Model
     protected $guarded = [];
 
     public function product(){
-        return $this->belongsTo(Product::class, 'id_prod');
+        return $this->belongsTo(Product::class, 'id_prod')->withTrashed();
     }
 }

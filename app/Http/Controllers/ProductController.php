@@ -21,8 +21,9 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
+        $eliminados = Product::onlyTrashed()->get();
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'eliminados'));
     }
 
     public function store(ProductRequest $request)
@@ -54,5 +55,12 @@ class ProductController extends Controller
         Product::find($id)->delete();
 
         return redirect()->route('products.index')->with('delete', 'ok');
+    }
+
+    public function restoreProducts($id)
+    {
+        Product::onlyTrashed()->where('id', $id)->restore();
+
+        return redirect()->route('products.index')->with('restore', 'ok');
     }
 }

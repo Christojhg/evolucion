@@ -63,6 +63,9 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function(){
     
     Route::post('invoice_send',[InvoiceController::class, 'invoice_send'])->name('invoice_send');
     Route::post('voucher_send',[VoucherController::class, 'voucher_send'])->name('voucher_send');
+
+    //Restaurar productos eliminados
+    Route::post('restoreProducts/{id}', [ProductController::class, 'restoreProducts'])->name('restoreProducts');
 });
 
 Route::get('/invoice_generate/{id}' , [InvoiceController::class, 'invoice_generate'])->name('invoice_generate')->middleware('signed');
